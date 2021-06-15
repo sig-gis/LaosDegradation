@@ -1,0 +1,47 @@
+LON,LAT,PLOTID,CEO_plot_id,CEO_pl_plotid,forestType,email,O_Dynamics,O_Change,O_Ch_type,O_deg_driver,O_def_type,O_yrChange,J_Dynamics,J_Change,J_Ch_type,J_deg_driver,J_def_type,J_yrChange,KK_Dynamics,KK_Change,KK_Ch_type
+106.0352048,16.30401816,1,139342231,6,dipterocarp,soukanh09@gmail.com,stable non-forest,no,,,,NA,degradation,yes,forest degradation,shifting agriculture,,2017,stable forest,no,
+105.5899997,16.02320481,2,139342235,10,dipterocarp,kkfipd@gmail.com,stable non-forest,no,,,,NA,loss,yes,forest loss,,agriculture,2014,,,
+105.7463066,16.70260066,3,139342236,11,dipterocarp,kkfipd@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,,,2018,stable forest,no,
+105.7473845,16.70125318,4,139342237,12,dipterocarp,kkfipd@gmail.com,stable forest,no,,,,NA,stable forest,no,,,,NA,degradation,yes,forest degradation
+105.8770114,16.7702438,5,139342240,15,dipterocarp,thongkhamvorabout@gmail.com,stable forest,no,,,,NA,stable forest,no,,,,NA,degradation,yes,forest degradation
+105.5843403,16.21616293,6,139342241,16,dipterocarp,thongkhamvorabout@gmail.com,loss,yes,forest loss,,agriculture,2018,stable non-forest,no,,,,NA,,,
+105.4684576,16.35737809,7,139342243,18,dipterocarp,thongkhamvorabout@gmail.com,stable non-forest,no,,,,NA,loss,yes,forest loss,,agriculture,2013,,,
+105.5897302,16.02293531,8,139342244,19,dipterocarp,thongkhamvorabout@gmail.com,stable non-forest,no,,,,NA,loss,yes,forest loss,,agriculture,2014,stable non-forest,no,
+105.4388132,16.84651076,9,139342245,20,dipterocarp,mouthvo@gmail.com,stable forest,no,,,,NA,loss,yes,forest loss,,agriculture & settlement,2018,degradation,yes,forest degradation
+105.003849,17.01817882,10,139342250,25,dipterocarp,mouthvo@gmail.com,stable non-forest,no,,,,NA,loss,yes,forest loss,,agriculture,2017,loss,yes,forest loss
+105.1997715,16.69370734,11,139342256,31,dipterocarp,chittanap@gmail.com,stable non-forest,no,,,,NA,stable non-forest,no,,,,NA,recheck,recheck,recheck
+105.129703,16.7503012,12,139342258,33,dipterocarp,chittanap@gmail.com,stable non-forest,no,,,,NA,stable non-forest,no,,,,NA,recheck,recheck,recheck
+105.1439862,16.11079055,13,139342270,45,dipterocarp,chittanap@gmail.com,stable non-forest,no,,,,NA,loss,yes,forest loss,,agriculture,2018,recheck,recheck,recheck
+104.9434822,16.85243965,14,139342271,46,dipterocarp,chittanap@gmail.com,stable forest,no,,,,NA,stable forest,no,,,,NA,degradation,yes,forest degradation
+105.1763255,16.62687268,15,139342272,47,dipterocarp,chittanap@gmail.com,stable non-forest,no,,,,NA,stable non-forest,no,,,,NA,recheck,yes,recheck
+106.543741,16.8397734,16,139377972,0,mixed,thongkhamvorabout@gmail.com,stable forest,no,,,,NA,stable forest,no,,,,NA,degradation,yes,forest degradation
+106.3831223,16.81875282,17,139377979,7,mixed,kkfipd@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,selective logging,,2018,,,
+105.8794369,16.99554127,18,139377985,13,mixed,thongkhamvorabout@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,shifting agriculture,,2011,loss,yes,forest loss
+106.5520954,16.47865066,19,139377994,22,mixed,chittanap@gmail.com,restoration,yes,forest restoration,,,2018,loss,yes,forest loss,,agriculture,2017,,,
+106.5518259,16.46113351,20,139377997,25,mixed,chittanap@gmail.com,restoration,yes,forest restoration,,,2018,loss,yes,forest loss,,agriculture,2017,,,
+105.2930167,16.52689019,21,139377999,27,mixed,chittanap@gmail.com,stable forest,no,,,,NA,loss,yes,forest loss,,agriculture,2018,loss,yes,forest loss
+106.3556338,16.44765878,22,139378002,30,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss, ,agriculture,2018,,,
+105.5705961,16.82036979,23,139378003,31,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2012,loss,yes,forest loss, ,agriculture,2019,,,
+105.2663367,16.45008423,24,139378004,32,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss, ,agriculture,2018,,,
+105.1116468,16.99500228,25,139378005,33,mixed,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,forest degradation,selective logging,,2018,degradation,yes,forest degradation
+105.9880432,16.68589199,26,139378012,40,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss,,agriculture,2018,,,
+105.996128,16.67672918,27,139378014,42,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss,,agriculture,2018,,,
+105.1962681,16.38405806,28,139378017,45,mixed,chittanap@gmail.com,stable forest,no,,,,NA,loss,yes,forest loss,,agriculture,2018,recheck,yes,recheck
+104.8052315,16.72469921,29,139378019,47,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2015,loss,yes,forest loss,,agriculture,2015,,,
+105.9389952,16.53308856,30,139378020,48,mixed,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,forest degradation,,????,2015,stable forest,no,
+105.0175932,16.42798567,31,139378021,49,mixed,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2015,stable non-forest,no,,,,NA,,,
+106.1200956,16.63522701,32,139378029,7,forest evergreen,kkfipd@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2016,loss,yes,forest loss,,agriculture,2016,,,
+105.5202006,16.92035228,33,139378041,19,forest evergreen,chittanap@gmail.com,loss,yes,forest loss,,agriculture,2015,degradation,yes,forest degradation,,logging,2015,,,
+105.9106983,16.77401672,34,139378045,23,forest evergreen,chittanap@gmail.com,other,yes,other,,,2018,loss,yes,forest loss,,,2018,,,
+105.9112373,16.48565752,35,139378049,27,forest evergreen,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss,,agriculture,2018,,,
+105.750888,16.81309344,36,139378050,28,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,selective logging,,2015,stable forest,no,
+105.922017,16.810129,37,139378057,35,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,selective logging,,2015,stable forest,no,
+106.2284324,16.61151149,38,139378061,39,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,selective logging,,2015,stable forest,no,
+105.5110378,16.21050354,39,139378063,41,forest evergreen,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss,,agriculture,2018,,,
+106.148662,16.84947521,40,139378064,42,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,loss,yes,forest loss,,agriculture,2017,stable non-forest,no,
+105.5358313,16.93140156,41,139378065,43,forest evergreen,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2017,loss,yes,forest loss,,agriculture,2016,,,
+106.495232,16.21589344,42,139378066,44,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,recheck,yes,???,,,2017,stable forest,no,
+105.6282679,16.12992466,43,139378067,45,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,shifting argicultural ,,2017,stable forest,no,
+106.0020569,16.15417918,44,139378068,46,forest evergreen,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2018,loss,yes,forest loss,,agriculture,2018,,,
+105.9047694,16.80581708,45,139378070,48,forest evergreen,chittanap@gmail.com,degradation,yes,forest degradation,shifting agriculture,,2015,loss,yes,forest loss,,agriculture,2017,,,
+105.9567818,16.80770354,46,139378071,49,forest evergreen,chittanap@gmail.com,stable forest,no,,,,NA,degradation,yes,degradation,selective logging,,2015,recheck,recheck,recheck
