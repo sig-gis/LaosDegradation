@@ -1,14 +1,23 @@
 library(tidyverse)
 library(tidyr)
 
-setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Comparison_2021\\CEOdata')
+setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Comparison_2021\\LaosDegradation\\CEOdata')
+
+### Old spreadsheets ###
+#GIS <- read.csv('CeoSmplGISv3.csv')
+#increase1<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer-sample-data-2021-06-15.csv')
+#increase2<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer--v2-sample-data-2021-06-15.csv')
+
+GIS <- read.csv('CompiledGisUpdated.csv')
+dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
+census <- read.csv('recheck_JF.csv')
+increase <- read.csv('IncreasedDensity2021-06-16.csv')
 
 #######################################################
 #######################################################
 ################## Load map data ######################
 #######################################################
 #######################################################
-GIS <- read.csv('CeoSmplGISv3.csv')
 head(GIS) 
 colnames(GIS)
 
@@ -120,7 +129,6 @@ unique(GIS$forestType)
 ################## Load CEO data ######################
 #######################################################
 #######################################################
-dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
 head(dataCEO)
 colnames(dataCEO)
 colnames(dataCEO)[1]<- 'plot_id'
@@ -243,9 +251,17 @@ recheck<-dataCEOsub[(
     (dataCEOsub$KK_Dynamics != dataCEOsub$J_Dynamics & dataCEOsub$J_Dynamics != 'NA'& dataCEOsub$KK_Dynamics != "")
 ),c('email','O_Dynamics','J_Dynamics','KK_Dynamics')]
 
-data2<- merge(dataCEOsub, GIS, by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
+colnames(GIS)
+sort(colnames(dataCEOsub))
+data2<- merge(dataCEOsub, GIS[,c(
+  "pl_plotid", "plot_id", "strata_coded", "strata_coded_year", 
+  "strata_fcdm", "strata_frel_2015", "strata_frel_2019", "strata_out", "svk_forests", 
+  "smplStrata", "fcdm", "coded", "frel_2015", "frel_2019", "forestType")], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
 head(data2)
 colnames(data2)
+rm(dataCEOsub)
+rm(GIS)
+rm(dataCEO)
 
 table(data2$flagged)
 data2<-data2[data2$flagged != TRUE,]
@@ -253,17 +269,53 @@ data2<-data2[data2$flagged != TRUE,]
 colnames(data2)
 ###########################################################
 ###########################################################
+####### consensus##########################################
+###########################################################
+###########################################################
+
+head(census) 
+colnames(census)
+colnames(data2)
+
+data3<- merge(data2, census[,c('CEO_plot_id',"Jeremy.final.comment", "Suggested.change", "Chittana", "Khamkong",
+                               "LC_Change_Dynamics","Year_degradation", "notes", "Year_Forest_Loss", "FINAL")], 
+              by.x = 'plot_id', by.y = 'CEO_plot_id', no.dups = TRUE, all = T)
+head(data3[data3$recheck == 1,])
+colnames(data3)
+
+unique(data3$FINAL[data3$recheck == 1])
+data3$FINAL[data3$recheck == 0]
+data3[((data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == "") | 
+               (data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == data3$J_Dynamics) |
+               (data3$O_Dynamics == data3$KK_Dynamics & data3$J_Dynamics == "")),
+      c('O_Dynamics','J_Dynamics','KK_Dynamics')]
+
+data3$FINAL[((data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == "") | 
+               (data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == data3$J_Dynamics) |
+               (data3$O_Dynamics == data3$KK_Dynamics & data3$J_Dynamics == ""))]<-
+  data3$O_Dynamics[((data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == "") | 
+                      (data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == data3$J_Dynamics) |
+                      (data3$O_Dynamics == data3$KK_Dynamics & data3$J_Dynamics == ""))]
+data3$FINAL[data3$recheck == 0]
+
+data3[(data3$FINAL == ""),c('plot_id','O_Dynamics','J_Dynamics','KK_Dynamics')]
+
+write.csv(data3, file = 'delete.csv')
+
+###########################################################
+###########################################################
 ####### CODED #############################################
 ###########################################################
 ###########################################################
-colnames(data2)
-recheck<-data2[(data2$recheck == 1),c('plot_id','pl_plotid','lon.x','lat.x',
-                                      'forestType','email',
-                                      'O_Dynamics',"O_Change","O_Ch_type", "O_deg_driver","O_def_type",'O_yrChange',
-                                      'J_Dynamics',"J_Change","J_Ch_type", "J_deg_driver","J_def_type","J_yrChange","J_notes",
-                                      'KK_Dynamics',"KK_Change","KK_Ch_type", "KK_notes")]
-head(recheck)
-write.csv(recheck,file = 'recheck.csv')
+#colnames(data2)
+#recheck<-data2[(data2$recheck == 1),c('plot_id','pl_plotid','lon.x','lat.x',
+#                                      'forestType','email',
+#                                      'O_Dynamics',"O_Change","O_Ch_type", "O_deg_driver","O_def_type",'O_yrChange',
+#                                      'J_Dynamics',"J_Change","J_Ch_type", "J_deg_driver","J_def_type","J_yrChange","J_notes",
+#                                      'KK_Dynamics',"KK_Change","KK_Ch_type", "KK_notes")]
+#head(recheck)
+#write.csv(recheck,file = 'recheck.csv')
+
 ###########################################################
 ###########################################################
 ####### CODED #############################################
