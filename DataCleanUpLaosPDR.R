@@ -151,9 +151,9 @@ unique(GIS$frel_2019)
 sort(unique(GIS$svk_forests))
 GIS$forestType <- GIS$svk_forests
 GIS <- mutate(GIS, forestType = case_when(
-  (forestType == 100) ~ "forest evergreen",
-  (forestType == 200) ~ "mixed",
-  (forestType == 300) ~ 'dipterocarp',
+  (forestType == 1) ~ "forest evergreen",
+  (forestType == 2) ~ "mixed",
+  (forestType == 3) ~ 'dipterocarp',
   (forestType == 400) ~ 'Non forest',
   (forestType == 500) ~ 'Non forest',
   TRUE ~ "FixMe"
@@ -431,18 +431,8 @@ CEOfull$Post2015[CEOfull$O_yrChange>2014 ]<-1
 #######################################################
 
 sort(colnames(GIS))
-sort(colnames(dataTemp))
-data4<- merge(dataTemp[
-  ,c("plot_id", "lat", "lon", 
-     "email","Confidence",   
-     #"flagged", "CW_Ch_type", "CW_Change", "CW_confidence", "CW_notes", 
-     "O_Ch_type", "O_Change", "O_def_type", "O_deg_driver", "O_Dynamics", "O_LC", "O_yrChange", 
-     "J_Ch_type", "J_Change", "J_def_type", "J_deg_driver", "J_Dynamics", "J_LC", "J_notes", "J_yrChange", 
-     "KK_Ch_type", "KK_Change", "KK_confidence", "KK_Dynamics", "KK_notes", 
-     #"pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", "pl_strata_out", 
-     #"pl_strata_out_name", "pl_union_deg", 
-     #"Pre2015","sample_id", 
-     "recheck")], GIS[,c(
+sort(colnames(CEOfull))
+fulldata<- merge(CEOfull, GIS[,c(
   "plot_id", 
   "codedLab", "strata_coded_year", 
   "fcdm", 
@@ -450,13 +440,16 @@ data4<- merge(dataTemp[
   #"strata_out", 
   "smplStrata", 'smplLab', 
   "forestType")], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
-head(data2)
-colnames(data2)
-rm(dataCEOsub)
-rm(GIS)
-rm(dataCEO)
+head(fulldata)
+fulldata$forestType
 
-colnames(data2)
+colnames(fulldata)
+rm(CEOfull)
+rm(GIS)
+
+colnames(fulldata)
+write.csv(fulldata,file = 'ProcessedMergedData06172021.csv')
+
 ###########################################################
 ###########################################################
 ####### CODED #############################################
