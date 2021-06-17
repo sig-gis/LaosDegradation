@@ -11,7 +11,7 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 #GISw_buffer <- read.csv('CompiledGisUpdated.csv')
 GIS <- read.csv('CompiledForGisUpdated_nobuffers.csv')
 dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
-census <- read.csv('recheck_JF.csv')
+concensus <- read.csv('recheck_JFpreKK.csv')
 increase <- read.csv('IncreasedDensity2021-06-16.csv')
 
 #######################################################
@@ -231,9 +231,9 @@ colnames(dataCEO)[47]<- 'KK_notes'
 #"email", "collection_time", "analysis_duration", 
 #"imagery_title", "imagery_attributions", "sample_geom", 
 #"pl_plotid", "pl_sampleid", 
-#"pl_lat_info", "pl_lon_info", 
+#"pl_lat_info", "pl_lon_info", "sample_id", 
 
-dataCEOsub<- dataCEO[,c("plot_id", "sample_id", "lon", "lat", "flagged",'email',
+dataCEOsub<- dataCEO[,c("plot_id", "lon", "lat", "flagged",'email',
                         "pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", 
                         "pl_strata_out", "pl_strata_out_name", "pl_union_deg", 
                         "O_LC",'J_LC',
@@ -250,7 +250,7 @@ head(dataCEOsub[,seq(1:9)])
 head(dataCEOsub[,seq(10:19)])
 head(dataCEOsub[,seq(21:29)])
 colnames(dataCEOsub)
-
+rm(dataCEO)
 #######################################################
 ################## simplify labels ######################
 #######################################################
@@ -309,16 +309,130 @@ colnames(dataCEOsub)
 #recheck<-dataCEOsub[(dataCEOsub$recheck == 1),c('email','O_Dynamics','J_Dynamics','KK_Dynamics')]
 
 #######################################################
+################## remove flagged plots ######################
+#######################################################
+
+table(dataCEOsub$flagged)
+dataCEOsub<-dataCEOsub[dataCEOsub$flagged != TRUE,]
+
+###########################################################
+###########################################################
+####### consensus ##########################################
+###########################################################
+###########################################################
+head(concensus[,seq(1:5)])
+head(concensus[,seq(from = 6, to = 10)])
+head(concensus[,seq(from = 11, to = 15)])
+head(concensus[,seq(from = 16, to = 20)])
+head(concensus[,seq(from = 21, to = 25)])
+head(concensus[,seq(from = 26, to = 30)])
+head(concensus[,seq(from = 31, to = 34)])
+
+colnames(concensus)[1]<- 'LON'
+colnames(concensus)[4]<- 'plot_id'
+
+colnames(concensus)
+concensus<-concensus[,c('plot_id',"Jeremy.final.comment", "Suggested.change", "Chittana", "Khamkong",
+             "LC_Change_Dynamics","Year_degradation", "notes", "Year_Forest_Loss", "FINAL")]
+
+sort(unique(concensus$FINAL))
+concensus <- mutate(concensus, FINAL = case_when(
+  (FINAL == 'LOSS') ~ "loss",
+  (FINAL == 'DEGRADATION') ~ "degradation",
+  #(FINAL == 'other') ~ 'other',
+  #(FINAL == 'forest restoration') ~ 'restoration',
+  (FINAL == 'No change') ~ 'stable',
+  (FINAL == 'not forest') ~ 'stable non-forest',
+  (FINAL == 'Not to include in analysis') ~ 'stable non-forest',
+  TRUE ~ "NA"
+))
+unique(concensus$FINAL)
+
+#######################################################
+#######################################################
+################## merge with CEO data ######################
+#######################################################
+#######################################################
+dataTemp<- merge(dataCEOsub, concensus, by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE, all = T)
+head(dataTemp[dataTemp$recheck == 1,])
+colnames(dataTemp)
+rm(dataCEOsub, concensus)
+
+unique(dataTemp$FINAL[dataTemp$recheck == 1])
+dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] <-dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] 
+dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)] <- dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)]
+dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]<- dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]
+dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-dataTemp$O_Dynamics[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)] 
+
+#######################################################
+#######################################################
+################## merge CEO data and increased density ######################
+#######################################################
+#######################################################
+colnames(increase)
+head(increase[,seq(1:5)])
+
+# "collection_time", "analysis_duration", "imagery_title", "imagery_attributions",
+#"sample_geom", "pl_strata_out", "pl_long", "pl_plotid",
+
+increase<-increase[, c("ï..plot_id", "lon", "lat", "flagged", "email", 
+                       #"pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", 
+                       #"pl_strata_out", "pl_strata_out_name", "pl_union_deg", 
+                       "Land.cover..2019", "Change.", "Change.type.",
+                       "Driver.of.degradation.", "Deforestation.type", "Year.of.change", "Confidence")]        
+colnames(increase)[1]<- 'plot_id'
+colnames(increase)[6]<- "O_LC"
+colnames(increase)[7]<- "O_Change"
+colnames(increase)[8]<- "O_Ch_type"
+colnames(increase)[9]<- "O_deg_driver"
+colnames(increase)[10]<- "O_def_type"
+colnames(increase)[11]<- 'O_yrChange'
+
+unique(increase$O_Ch_type)
+unique(dataTemp$FINAL)
+table(dataTemp$FINAL)
+increase$FINAL<-NULL
+
+increase <- mutate(increase, FINAL = case_when(
+  (O_Ch_type == 'forest loss') ~ "loss",
+  (O_Ch_type == 'forest degradation') ~ "degradation",
+  (O_Ch_type == 'other') ~ 'other',
+  (O_Ch_type == 'forest restoration') ~ 'restoration',
+  (O_Change == 'no' & O_LC == 'non-forest') ~ 'stable non-forest',
+  (O_Change == 'no' & O_LC == 'forest') ~ 'stable forest',
+  TRUE ~ "FixMe"
+))
+unique(increase$FINAL)
+increase[increase$FINAL=='FixMe', c('O_LC','O_Ch_type','O_Change')]
+
+
+colnames(dataTemp)
+dataTemp<-dataTemp[, c("plot_id", "lon", "lat", "flagged",'email',
+#"pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", 
+#"pl_strata_out", "pl_strata_out_name", "pl_union_deg", 
+"O_LC","O_Change","O_Ch_type","O_deg_driver","O_def_type",'O_yrChange',
+"Confidence", 'FINAL')]
+
+colnames(dataTemp)
+colnames(increase)
+
+CEOfull<- rbind(dataTemp, increase)
+rm(dataTemp,increase)
+head(CEOfull)
+tail(CEOfull)
+CEOfull$Post2015<-0
+CEOfull$O_Change[CEOfull$O_yrChange>2000]
+CEOfull$Post2015[CEOfull$O_yrChange>2014 ]<-1
+
+#######################################################
 #######################################################
 ################## merge GIS and CEO data ######################
 #######################################################
 #######################################################
-table(dataCEOsub$flagged)
-dataCEOsub<-dataCEOsub[dataCEOsub$flagged != TRUE,]
 
 sort(colnames(GIS))
-sort(colnames(dataCEOsub))
-data2<- merge(dataCEOsub[
+sort(colnames(dataTemp))
+data4<- merge(dataTemp[
   ,c("plot_id", "lat", "lon", 
      "email","Confidence",   
      #"flagged", "CW_Ch_type", "CW_Change", "CW_confidence", "CW_notes", 
@@ -345,41 +459,6 @@ rm(dataCEO)
 colnames(data2)
 ###########################################################
 ###########################################################
-####### consensus##########################################
-###########################################################
-###########################################################
-
-head(census) 
-colnames(census)
-colnames(data2)
-
-data3<- merge(data2, census[,c('CEO_plot_id',"Jeremy.final.comment", "Suggested.change", "Chittana", "Khamkong",
-                               "LC_Change_Dynamics","Year_degradation", "notes", "Year_Forest_Loss", "FINAL")], 
-              by.x = 'plot_id', by.y = 'CEO_plot_id', no.dups = TRUE, all = T)
-head(data3[data3$recheck == 1,])
-colnames(data3)
-
-unique(data3$FINAL[data3$recheck == 1])
-data3$FINAL[data3$recheck == 0]
-data3[((data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == "") | 
-               (data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == data3$J_Dynamics) |
-               (data3$O_Dynamics == data3$KK_Dynamics & data3$J_Dynamics == "")),
-      c('O_Dynamics','J_Dynamics','KK_Dynamics')]
-
-data3$FINAL[((data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == "") | 
-               (data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == data3$J_Dynamics) |
-               (data3$O_Dynamics == data3$KK_Dynamics & data3$J_Dynamics == ""))]<-
-  data3$O_Dynamics[((data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == "") | 
-                      (data3$O_Dynamics == data3$J_Dynamics & data3$KK_Dynamics == data3$J_Dynamics) |
-                      (data3$O_Dynamics == data3$KK_Dynamics & data3$J_Dynamics == ""))]
-data3$FINAL[data3$recheck == 0]
-
-data3[(data3$FINAL == ""),c('plot_id','O_Dynamics','J_Dynamics','KK_Dynamics')]
-
-write.csv(data3, file = 'delete.csv')
-
-###########################################################
-###########################################################
 ####### CODED #############################################
 ###########################################################
 ###########################################################
@@ -392,170 +471,3 @@ write.csv(data3, file = 'delete.csv')
 #head(recheck)
 #write.csv(recheck,file = 'recheck.csv')
 
-###########################################################
-###########################################################
-####### CODED #############################################
-###########################################################
-###########################################################
-
-data2[,c("coded", "forestType")]
-
-sub<- data2[data2$forestType=='dipterocarp',]
-
-sub[,c('pl_plotid','O_LC','J_LC')]
-sub[,c('pl_plotid','email','O_Change','J_Change','KK_Change')]
-sub[,c('pl_plotid','O_Ch_type','J_Ch_type','KK_Ch_type')]#'CW_Ch_type','email',
-sub[,c('pl_plotid','O_deg_driver','J_deg_driver')]
-sub[,c('O_def_type','J_def_type')]  
-sub[,c('pl_plotid','O_yrChange','J_yrChange')]
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-#########################################################
-sub<- data2[data2$coded=='dipterocarp degradation',]
-sub$O_LC; sub$J_LC
-sub$O_Change;sub$J_Change;sub$CW_Change;sub$KK_Change
-sub$O_Ch_type;sub$J_Ch_type;sub$CW_Ch_type;sub$KK_Ch_type 
-sub$O_deg_driver;sub$J_deg_driver
-sub$O_def_type;sub$J_def_type  
-sub$O_yrChange;sub$J_yrChange
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-sub<- data2[data2$coded=='dipterocarp forest loss',]
-
-table(sub$O_LC); table(sub$J_LC)
-table(sub$O_LC,sub$J_LC)
-sub[,c('pl_plotid','O_LC','J_LC')]
-
-sub$O_Change;sub$J_Change;sub$KK_Change
-sub[,c('pl_plotid','email','O_Change','J_Change','KK_Change')]
-
-sub$O_Ch_type;sub$J_Ch_type;sub$CW_Ch_type;sub$KK_Ch_type 
-sub[,c('pl_plotid','O_Ch_type','J_Ch_type','KK_Ch_type')]#'CW_Ch_type','email',
-
-
-sub[,c('pl_plotid','O_deg_driver','J_deg_driver')]
-sub[,c('O_def_type','J_def_type')]  
-
-sub[,c('O_yrChange','J_yrChange')]
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-
-sub<- data2[data2$coded=='dipterocarp, stable',]
-table(sub$O_LC); table(sub$J_LC)
-table(sub$O_LC,sub$J_LC)
-sub[,c('pl_plotid','O_LC','J_LC')]
-
-sub$O_Change;sub$J_Change;sub$CW_Change;sub$KK_Change
-sub[,c('pl_plotid','email','O_Change','J_Change','CW_Change','KK_Change')]
-
-sub$O_Ch_type;sub$J_Ch_type;sub$CW_Ch_type;sub$KK_Ch_type 
-sub[,c('pl_plotid','O_Ch_type','J_Ch_type','KK_Ch_type')]#'CW_Ch_type','email',
-
-sub[,c('pl_plotid','O_deg_driver','J_deg_driver')]
-sub[,c('O_def_type','J_def_type')]  
-
-sub[,c('pl_plotid','O_yrChange','J_yrChange')]
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-###########################################################
-###########################################################
-####### Mixed #############################################
-###########################################################
-###########################################################
-sub<- data2[data2$coded=='mixed degradation',]
-sub$O_LC; sub$J_LC
-sub$O_Change;sub$J_Change;sub$CW_Change;sub$KK_Change
-sub$O_Ch_type;sub$J_Ch_type;sub$CW_Ch_type;sub$KK_Ch_type 
-sub$O_deg_driver;sub$J_deg_driver
-sub$O_def_type;sub$J_def_type  
-sub$O_yrChange;sub$J_yrChange
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-sub<- data2[data2$coded=='mixed forest loss',]
-
-table(sub$O_LC); table(sub$J_LC)
-table(sub$O_LC,sub$J_LC)
-sub[,c('pl_plotid','O_LC','J_LC')]
-
-sub$O_Change;sub$J_Change;sub$CW_Change;sub$KK_Change
-sub[,c('pl_plotid','email','O_Change','J_Change','CW_Change','KK_Change')]
-
-sub$O_Ch_type;sub$J_Ch_type;sub$CW_Ch_type;sub$KK_Ch_type 
-sub[,c('pl_plotid','O_Ch_type','J_Ch_type','KK_Ch_type')]#'CW_Ch_type','email',
-
-
-sub[,c('pl_plotid','O_deg_driver','J_deg_driver')]
-sub[,c('O_def_type','J_def_type')]  
-
-sub[,c('O_yrChange','J_yrChange')]
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-
-sub<- data2[data2$coded=='mixed, stable',]
-table(sub$O_LC); table(sub$J_LC)
-table(sub$O_LC,sub$J_LC)
-sub[,c('pl_plotid','O_LC','J_LC')]
-
-sub$O_Change;sub$J_Change;sub$CW_Change;sub$KK_Change
-sub[,c('pl_plotid','email','O_Change','J_Change','CW_Change','KK_Change')]
-
-sub$O_Ch_type;sub$J_Ch_type;sub$CW_Ch_type;sub$KK_Ch_type 
-sub[,c('pl_plotid','O_Ch_type','J_Ch_type','KK_Ch_type')]#'CW_Ch_type','email',
-
-sub[,c('pl_plotid','O_deg_driver','J_deg_driver')]
-sub[,c('O_def_type','J_def_type')]  
-
-sub[,c('pl_plotid','O_yrChange','J_yrChange')]
-sub$J_notes;sub$CW_notes;sub$KK_notes
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-
-###########################################################
-###########################################################
-####### evergreen #########################################
-###########################################################
-###########################################################
-sub<- data2[data2$coded=='evergreen degradation',]
-sub$O_LC; sub$J_LC
-sub[,c('email','O_Change','J_Change','KK_Change')]
-sub[,c('email','O_Ch_type','J_Ch_type','KK_Ch_type')] 
-sub[,c('email','O_deg_driver','J_deg_driver')]
-sub[,c('email','O_yrChange','J_yrChange')]
-sub[,c('email','J_notes','CW_notes','KK_notes')]
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-sub<- data2[data2$coded=='evergreen loss',]
-sub$O_LC; sub$J_LC
-sub[,c('email','O_Change','J_Change','KK_Change')]
-sub[,c('email','O_Ch_type','J_Ch_type','KK_Ch_type')] 
-sub[,c('email','O_deg_driver','J_deg_driver')]
-sub[,c('email','O_yrChange','J_yrChange')]
-sub[,c('email','J_notes','CW_notes','KK_notes')]
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-
-sub<- data2[data2$coded=='evergreen, stable',]
-sub$O_LC; sub$J_LC
-sub[,c('email','O_Change','J_Change','KK_Change')]
-sub[,c('email','O_Ch_type','J_Ch_type','KK_Ch_type')] 
-sub[,c('email','O_deg_driver','J_deg_driver')]
-sub[,c('email','O_yrChange','J_yrChange')]
-sub[,c('email','J_notes','CW_notes','KK_notes')]
-sub$Confidence;sub$CW_confidence;sub$KK_confidence 
-
-
-
-60697.58+
-58444.50+
-6650.59+
-5147.20+
-11605.00+
-78380.00+
-39648.75+
-9000.00+
-101000.00
