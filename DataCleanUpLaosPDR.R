@@ -8,7 +8,8 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 #increase1<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer-sample-data-2021-06-15.csv')
 #increase2<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer--v2-sample-data-2021-06-15.csv')
 
-GIS <- read.csv('CompiledGisUpdated.csv')
+#GISw_buffer <- read.csv('CompiledGisUpdated.csv')
+GIS <- read.csv('CompiledForGisUpdated_nobuffers.csv')
 dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
 census <- read.csv('recheck_JF.csv')
 increase <- read.csv('IncreasedDensity2021-06-16.csv')
@@ -21,30 +22,78 @@ increase <- read.csv('IncreasedDensity2021-06-16.csv')
 head(GIS) 
 colnames(GIS)
 
-GIS$smplStrata <- GIS$strata_out
-GIS <- mutate(GIS, smplStrata = case_when(
-  (strata_out == 100) ~ 'stable forest evergreen',
-  (strata_out == 111) ~ 'evergreen fcdm',
-  (strata_out == 121) ~ 'evergreen frel',
-  (strata_out == 131) ~ 'evergreen coded',
-  (strata_out == 141) ~ 'evergreen multi agreement',
-  (strata_out == 200) ~ 'stable mixed',
-  (strata_out == 211) ~ 'mixed fcdm',
-  (strata_out == 221) ~ 'mixed coded',
-  (strata_out == 231) ~ 'mixed frel',
-  (strata_out == 241) ~ 'mixed multi agreement',
-  (strata_out == 251) ~ 'mixed buffer',
-  (strata_out == 300) ~ 'stable forest dipterocarp',
-  (strata_out == 311) ~ 'dipterocarp fcdm',
-  (strata_out == 321) ~ 'dipterocarp frel',
-  (strata_out == 331) ~ 'dipterocarp coded',
-  (strata_out == 341) ~ 'dipterocarp multi agreement',
-  (strata_out == 400) ~ 'Non forest',
-  (strata_out == 500) ~ 'Non forest',
+unique(GIS$strata_coded)
+GIS$codedLab <- GIS$strata_coded
+GIS <- mutate(GIS, codedLab = case_when(
+  (strata_coded == 100) ~ 'evergreen stable',
+  (strata_coded == 103) ~ 'evergreen degradation',
+  (strata_coded == 104) ~ 'evergreen forest loss',
+  (strata_coded == 200) ~ 'mixed stable',
+  (strata_coded == 203) ~ 'mixed degradation',
+  (strata_coded == 204) ~ 'mixed loss',
+  (strata_coded == 251) ~ 'mixed buffer',
+  (strata_coded == 300) ~ 'dipto stable',
+  (strata_coded == 303) ~ 'dipto degradation',
+  (strata_coded == 304) ~ 'dipto loss',
   TRUE ~ "FixMe"
 ))
-unique(GIS$smplStrata)
+unique(GIS$codedLab)
 
+sort(unique(GIS$strata_out_v2))
+GIS$smplStrata <- GIS$strata_out_v2
+GIS$smplLab <- GIS$strata_out_v2
+GIS <- mutate(GIS, smplLab = case_when(
+  (strata_out_v2 == 100) ~ 'stable forest evergreen',
+  (strata_out_v2 == 111) ~ 'evergreen fcdm',
+  (strata_out_v2 == 121) ~ 'evergreen frel',
+  (strata_out_v2 == 131) ~ 'evergreen coded loss',
+  (strata_out_v2 == 133) ~ 'evergreen coded degradation',
+  (strata_out_v2 == 141) ~ 'evergreen multi agreement',
+  (strata_out_v2 == 200) ~ 'stable mixed',
+  (strata_out_v2 == 211) ~ 'mixed fcdm',
+  (strata_out_v2 == 221) ~ 'mixed frel',
+  (strata_out_v2 == 231) ~ 'mixed coded loss',
+  (strata_out_v2 == 233) ~ 'mixed coded degradation',
+  (strata_out_v2 == 241) ~ 'mixed multi agreement',
+  (strata_out_v2 == 251) ~ 'mixed buffer',
+  (strata_out_v2 == 300) ~ 'stable forest dipterocarp',
+  (strata_out_v2 == 311) ~ 'dipterocarp fcdm',
+  (strata_out_v2 == 321) ~ 'dipterocarp frel',
+  (strata_out_v2 == 331) ~ 'dipterocarp coded loss',
+  (strata_out_v2 == 333) ~ 'dipterocarp coded degradation',
+  (strata_out_v2 == 341) ~ 'dipterocarp multi agreement',
+  (strata_out_v2 == 400) ~ 'Non forest',
+  (strata_out_v2 == 500) ~ 'Non forest',
+  TRUE ~ "FixMe"
+))
+unique(GIS$smplLab)
+
+sort(unique(GIS$strata_out_v1))
+GIS$smplStrataOLD <- GIS$strata_out_v1
+GIS <- mutate(GIS, smplStrataOLD = case_when(
+  (strata_out_v1 == 100) ~ 'stable forest evergreen',
+  (strata_out_v1 == 111) ~ 'evergreen fcdm',
+  (strata_out_v1 == 121) ~ 'evergreen frel',
+  (strata_out_v1 == 131) ~ 'evergreen coded',
+  (strata_out_v1 == 141) ~ 'evergreen multi agreement',
+  (strata_out_v1 == 200) ~ 'stable mixed',
+  (strata_out_v1 == 211) ~ 'mixed fcdm',
+  (strata_out_v1 == 221) ~ 'mixed coded',
+  (strata_out_v1 == 231) ~ 'mixed frel',
+  (strata_out_v1 == 241) ~ 'mixed multi agreement',
+  (strata_out_v1 == 251) ~ 'mixed buffer',
+  (strata_out_v1 == 300) ~ 'stable forest dipterocarp',
+  (strata_out_v1 == 311) ~ 'dipterocarp fcdm',
+  (strata_out_v1 == 321) ~ 'dipterocarp frel',
+  (strata_out_v1 == 331) ~ 'dipterocarp coded',
+  (strata_out_v1 == 341) ~ 'dipterocarp multi agreement',
+  (strata_out_v1 == 400) ~ 'Non forest',
+  (strata_out_v1 == 500) ~ 'Non forest',
+  TRUE ~ "FixMe"
+))
+unique(GIS$smplStrataOLD)
+
+sort(unique(GIS$strata_fcdm))
 GIS$fcdm <- GIS$strata_fcdm
 GIS <- mutate(GIS, fcdm = case_when(
   (strata_fcdm == 100) ~ "stable forest evergreen",
@@ -60,24 +109,7 @@ GIS <- mutate(GIS, fcdm = case_when(
 ))
 unique(GIS$fcdm)
 
-GIS$coded <- GIS$strata_coded
-GIS <- mutate(GIS, coded = case_when(
-  (strata_coded == 100) ~ "evergreen, stable",
-  (strata_coded == 103) ~ 'evergreen degradation',
-  (strata_coded == 104) ~ 'evergreen forest loss',
-  (strata_coded == 200) ~ "mixed, stable",
-  (strata_coded == 203) ~ 'mixed degradation',
-  (strata_coded == 204) ~ 'mixed forest loss',
-  (strata_coded == 251) ~ 'mixed forest buffer',
-  (strata_coded == 300) ~ 'dipterocarp, stable',
-  (strata_coded == 303) ~ 'dipterocarp degradation',
-  (strata_coded == 304) ~ 'dipterocarp forest loss',
-  (strata_coded == 400) ~ 'Non forest',
-  (strata_coded == 500) ~ "Non forest",
-  TRUE ~ "FixMe"
-))
-unique(GIS$coded)
-
+sort(unique(GIS$strata_frel_2015))
 GIS$frel_2015 <- GIS$strata_frel_2015
 GIS <- mutate(GIS, frel_2015 = case_when(
   (strata_frel_2015 == 100) ~ "stable forest evergreen 10-15",
@@ -97,8 +129,11 @@ GIS <- mutate(GIS, frel_2015 = case_when(
 ))
 unique(GIS$frel_2015)
 
+sort(unique(GIS$strata_frel_2019))
 GIS$frel_2019 <- GIS$strata_frel_2019
 GIS <- mutate(GIS, frel_2019 = case_when(
+  #GIS$strata_out[GIS$strata_frel_2019 == 0]
+  (strata_frel_2019 == 0) ~ "mixed buffer",
   (strata_frel_2019 == 100) ~ "stable forest evergreen",
   (strata_frel_2019 == 200) ~ "stable mixed",
   (strata_frel_2019 == 212) ~ 'mixed FREL 10-15',
@@ -113,6 +148,7 @@ GIS <- mutate(GIS, frel_2019 = case_when(
 ))
 unique(GIS$frel_2019)
 
+sort(unique(GIS$svk_forests))
 GIS$forestType <- GIS$svk_forests
 GIS <- mutate(GIS, forestType = case_when(
   (forestType == 100) ~ "forest evergreen",
@@ -123,6 +159,11 @@ GIS <- mutate(GIS, forestType = case_when(
   TRUE ~ "FixMe"
 ))
 unique(GIS$forestType)
+
+sort(unique(GIS$strata_coded_year))
+
+colnames(GIS)
+head(GIS)
 
 #######################################################
 #######################################################
@@ -159,6 +200,10 @@ colnames(dataCEO)[41]<- 'CW_Ch_type'
 colnames(dataCEO)[42]<- 'CW_confidence'
 colnames(dataCEO)[43]<- 'CW_notes'
 
+#######################################################
+################## fix labels for KK merge ######################
+#######################################################
+
 colnames(dataCEO)[44]<- 'KK_Change'
 unique(dataCEO$KK_Change)
 dataCEO$KK_Change[dataCEO$KK_Change == 'yes\nno']<-'recheck'
@@ -177,14 +222,20 @@ unique(dataCEO$KK_Ch_type)
 
 colnames(dataCEO)[46]<- 'KK_confidence'
 colnames(dataCEO)[47]<- 'KK_notes'
+
+#######################################################
+################## subset to just select columns ######################
+#######################################################
+
+## Removed
+#"email", "collection_time", "analysis_duration", 
+#"imagery_title", "imagery_attributions", "sample_geom", 
+#"pl_plotid", "pl_sampleid", 
+#"pl_lat_info", "pl_lon_info", 
+
 dataCEOsub<- dataCEO[,c("plot_id", "sample_id", "lon", "lat", "flagged",'email',
-                        #"email", "collection_time", "analysis_duration", 
-                        #"imagery_title", "imagery_attributions", "sample_geom", 
-                        #"pl_plotid", "pl_sampleid", 
                         "pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", 
-                        #"pl_lat_info", "pl_lon_info", 
                         "pl_strata_out", "pl_strata_out_name", "pl_union_deg", 
-                        
                         "O_LC",'J_LC',
                         "O_Change","J_Change", "CW_Change", "KK_Change",
                         "O_Ch_type","J_Ch_type",  "CW_Ch_type", "KK_Ch_type", 
@@ -193,10 +244,16 @@ dataCEOsub<- dataCEO[,c("plot_id", "sample_id", "lon", "lat", "flagged",'email',
                         'O_yrChange',"J_yrChange", 
                         "J_notes","CW_notes",  "KK_notes",
                         "Confidence","CW_confidence", "KK_confidence", 
-                        
                         "Pre2015")]
-head(dataCEOsub[,c()])
+
+head(dataCEOsub[,seq(1:9)])
+head(dataCEOsub[,seq(10:19)])
+head(dataCEOsub[,seq(21:29)])
 colnames(dataCEOsub)
+
+#######################################################
+################## simplify labels ######################
+#######################################################
 
 dataCEOsub <- mutate(dataCEOsub, O_Dynamics = case_when(
   (O_Ch_type == 'forest loss') ~ "loss",
@@ -222,8 +279,8 @@ dataCEOsub <- mutate(dataCEOsub, J_Dynamics = case_when(
   TRUE ~ "NA"
 ))
 unique(dataCEOsub$J_Dynamics)
-dataCEOsub[dataCEOsub$J_Dynamics=='FixMe', c('J_LC','J_Ch_type','J_Change')]
-dataCEOsub[dataCEOsub$J_Dynamics=='FixMe', c('J_Ch_type')]#,'J_Change')]
+dataCEOsub[dataCEOsub$J_Dynamics=='NA', c('J_LC','J_Ch_type','J_Change')]
+dataCEOsub[dataCEOsub$J_Dynamics=='NA', c('J_Ch_type')]#,'J_Change')]
 
 dataCEOsub <- mutate(dataCEOsub, KK_Dynamics = case_when(
   (KK_Ch_type == 'forest loss') ~ "loss",
@@ -235,7 +292,11 @@ dataCEOsub <- mutate(dataCEOsub, KK_Dynamics = case_when(
   TRUE ~ KK_Ch_type
 ))
 unique(dataCEOsub$KK_Dynamics)
-dataCEOsub[dataCEOsub$O_Dynamics=='FixMe', c('O_LC','O_Ch_type','O_Change')]
+dataCEOsub[dataCEOsub$KK_Dynamics=='recheck', c('O_LC','O_Ch_type','O_Change')]
+
+#######################################################
+################## mark rows with inconsistent labels ######################
+#######################################################
 
 dataCEOsub$recheck<-0
 dataCEOsub$recheck[(
@@ -245,26 +306,41 @@ dataCEOsub$recheck[(
 )]<-'1'
 
 colnames(dataCEOsub)
-recheck<-dataCEOsub[(
-  (dataCEOsub$O_Dynamics != dataCEOsub$J_Dynamics & dataCEOsub$J_Dynamics != 'NA') |
-    (dataCEOsub$O_Dynamics != dataCEOsub$KK_Dynamics & dataCEOsub$KK_Dynamics != "")|
-    (dataCEOsub$KK_Dynamics != dataCEOsub$J_Dynamics & dataCEOsub$J_Dynamics != 'NA'& dataCEOsub$KK_Dynamics != "")
-),c('email','O_Dynamics','J_Dynamics','KK_Dynamics')]
+#recheck<-dataCEOsub[(dataCEOsub$recheck == 1),c('email','O_Dynamics','J_Dynamics','KK_Dynamics')]
 
-colnames(GIS)
+#######################################################
+#######################################################
+################## merge GIS and CEO data ######################
+#######################################################
+#######################################################
+table(dataCEOsub$flagged)
+dataCEOsub<-dataCEOsub[dataCEOsub$flagged != TRUE,]
+
+sort(colnames(GIS))
 sort(colnames(dataCEOsub))
-data2<- merge(dataCEOsub, GIS[,c(
-  "pl_plotid", "plot_id", "strata_coded", "strata_coded_year", 
-  "strata_fcdm", "strata_frel_2015", "strata_frel_2019", "strata_out", "svk_forests", 
-  "smplStrata", "fcdm", "coded", "frel_2015", "frel_2019", "forestType")], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
+data2<- merge(dataCEOsub[
+  ,c("plot_id", "lat", "lon", 
+     "email","Confidence",   
+     #"flagged", "CW_Ch_type", "CW_Change", "CW_confidence", "CW_notes", 
+     "O_Ch_type", "O_Change", "O_def_type", "O_deg_driver", "O_Dynamics", "O_LC", "O_yrChange", 
+     "J_Ch_type", "J_Change", "J_def_type", "J_deg_driver", "J_Dynamics", "J_LC", "J_notes", "J_yrChange", 
+     "KK_Ch_type", "KK_Change", "KK_confidence", "KK_Dynamics", "KK_notes", 
+     #"pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", "pl_strata_out", 
+     #"pl_strata_out_name", "pl_union_deg", 
+     #"Pre2015","sample_id", 
+     "recheck")], GIS[,c(
+  "plot_id", 
+  "codedLab", "strata_coded_year", 
+  "fcdm", 
+  "frel_2015", "frel_2019", 
+  #"strata_out", 
+  "smplStrata", 'smplLab', 
+  "forestType")], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
 head(data2)
 colnames(data2)
 rm(dataCEOsub)
 rm(GIS)
 rm(dataCEO)
-
-table(data2$flagged)
-data2<-data2[data2$flagged != TRUE,]
 
 colnames(data2)
 ###########################################################
