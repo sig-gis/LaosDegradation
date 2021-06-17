@@ -448,7 +448,7 @@ rm(CEOfull)
 rm(GIS)
 
 colnames(fulldata)
-write.csv(fulldata,file = 'ProcessedMergedData06172021.csv')
+write.csv(fulldata,file = 'ProcessedMergedData06172021.csv', row.names = F)
 
 ###########################################################
 ###########################################################
