@@ -1,0 +1,121 @@
+﻿plot_id,sample_id,lon,lat,email,flagged,collection_time,analysis_duration,imagery_title,imagery_attributions,pl_strata_out,pl_long,pl_plotid,"Land cover, 2019",Change?,Change type?,Driver of degradation?,Deforestation type,Confidence,Year of change
+140738328,568041695,106.5089762,16.19056094,soukanh09@gmail.com,FALSE,6/12/2021 3:56,5971.0 secs,Mapbox Satellite,,133,106.5089762,1,forest,no,,,,high,
+140738329,568041696,105.7301369,16.57135679,soukanh09@gmail.com,FALSE,6/12/2021 4:06,588.0 secs,Mapbox Satellite,,133,105.7301369,2,forest,yes,forest degradation,selective logging,,high,2017
+140738330,568041697,106.3168266,16.57459073,soukanh09@gmail.com,FALSE,6/12/2021 4:16,571.0 secs,Mapbox Satellite,,133,106.3168266,3,forest,yes,forest degradation,selective logging,,high,2019
+140738331,568041698,106.1456975,16.65112719,soukanh09@gmail.com,FALSE,6/12/2021 4:33,1047.8 secs,Mapbox Satellite,,133,106.1456975,4,forest,yes,forest restoration,,,high,2016
+140738332,568041699,106.5078983,16.22505625,soukanh09@gmail.com,FALSE,6/12/2021 4:43,579.9 secs,Mapbox Satellite,,133,106.5078983,5,non-forest,yes,forest loss,,agriculture,high,2016
+140738333,568041700,106.1438111,16.85324813,soukanh09@gmail.com,FALSE,6/12/2021 7:38,10516.6 secs,Mapbox Satellite,,133,106.1438111,6,non-forest,yes,forest loss,,agriculture,high,2017
+140738334,568041701,105.5016055,16.94891871,soukanh09@gmail.com,FALSE,6/12/2021 7:44,345.0 secs,Mapbox Satellite,,133,105.5016055,7,non-forest,yes,forest loss,,agriculture,high,2016
+140738335,568041702,106.5935975,16.20538315,soukanh09@gmail.com,FALSE,6/12/2021 7:48,230.3 secs,Mapbox Satellite,,133,106.5935975,8,forest,no,,,,high,
+140738336,568041703,106.2782889,16.56704488,soukanh09@gmail.com,FALSE,6/12/2021 7:55,427.0 secs,Mapbox Satellite,,133,106.2782889,9,forest,yes,forest restoration,,,high,2016
+140738337,568041704,105.5740995,16.23529705,soukanh09@gmail.com,FALSE,6/12/2021 8:02,458.6 secs,Mapbox Satellite,,133,105.5740995,10,non-forest,yes,forest loss,,agriculture,high,2017
+140738338,568041705,105.475734,16.96320192,kkfipd@gmail.com,FALSE,6/16/2021 7:28,2046.0 secs,Planet NICFI Public,,133,105.475734,16.96320192,non-forest,no,,,,high,
+140738339,568041706,106.6391421,16.31479795,kkfipd@gmail.com,FALSE,6/16/2021 7:30,128.6 secs,Planet NICFI Public,,133,106.6391421,16.31479795,forest,no,,,,high,
+140738340,568041707,106.4884947,16.22397827,kkfipd@gmail.com,FALSE,6/16/2021 7:36,345.5 secs,Planet NICFI Public,,133,106.4884947,16.22397827,non-forest,no,,,,high,
+140738341,568041708,106.6240504,16.35279668,kkfipd@gmail.com,FALSE,6/16/2021 7:38,111.8 secs,Planet NICFI Public,,133,106.6240504,16.35279668,forest,no,,,,high,
+140738342,568041709,105.6727345,16.76970481,kkfipd@gmail.com,FALSE,6/16/2021 7:49,664.7 secs,Planet NICFI Public,,133,105.6727345,16.76970481,non-forest,no,,,,medium,
+140738343,568041710,106.4849912,16.22882918,kkfipd@gmail.com,FALSE,6/16/2021 7:50,56.1 secs,Planet NICFI Public,,133,106.4849912,16.22882918,forest,no,,,,high,
+140738344,568041711,105.700223,16.7252382,kkfipd@gmail.com,FALSE,6/16/2021 7:52,151.4 secs,Planet NICFI Public,,133,105.700223,16.7252382,forest,no,,,,high,
+140738345,568041712,106.2966145,16.56812286,kkfipd@gmail.com,FALSE,6/16/2021 7:57,279.2 secs,Planet NICFI Public,,133,106.2966145,16.56812286,forest,no,,,,medium,
+140738346,568041713,105.8629977,17.01790932,kkfipd@gmail.com,FALSE,6/16/2021 8:07,610.6 secs,Planet NICFI Public,,133,105.8629977,17.01790932,non-forest,yes,forest degradation,shifting agriculture,,high,2017
+140738347,568041714,105.9473495,16.06605445,kkfipd@gmail.com,FALSE,6/16/2021 8:08,77.2 secs,Planet NICFI Public,,133,105.9473495,16.06605445,forest,no,,,,high,
+140738348,568041715,106.348088,16.36734939,kkfipd@gmail.com,FALSE,6/16/2021 8:12,242.7 secs,Planet NICFI Public,,133,106.348088,16.36734939,forest,no,,,,medium,
+140738349,568041716,106.321408,16.56920084,kkfipd@gmail.com,FALSE,6/16/2021 8:17,273.0 secs,Planet NICFI Public,,133,106.321408,16.56920084,non-forest,no,,,,high,
+140738350,568041717,106.2629277,16.49859326,kkfipd@gmail.com,FALSE,6/16/2021 8:18,91.9 secs,Planet NICFI Public,,133,106.2629277,16.49859326,non-forest,no,,,,high,
+140738351,568041718,106.2553818,16.44092141,kkfipd@gmail.com,FALSE,6/16/2021 8:21,172.9 secs,Planet NICFI Public,,133,106.2553818,16.44092141,non-forest,yes,forest degradation,shifting agriculture,,high,2016
+140738352,568041719,106.2887992,16.5807891,kkfipd@gmail.com,FALSE,6/16/2021 8:25,212.3 secs,Planet NICFI Public,,133,106.2887992,16.5807891,non-forest,yes,forest restoration,,,high,2017
+140738353,568041720,106.2960755,16.57755517,kkfipd@gmail.com,FALSE,6/16/2021 8:33,488.8 secs,Planet NICFI Public,,133,106.2960755,16.57755517,non-forest,yes,forest restoration,,,high,2016
+140738354,568041721,106.4887641,16.22370878,kkfipd@gmail.com,FALSE,6/16/2021 8:39,389.8 secs,Planet NICFI Public,,133,106.4887641,16.22370878,non-forest,yes,forest restoration,,,medium,2017
+140738355,568041722,106.3300318,16.61151149,kkfipd@gmail.com,FALSE,6/16/2021 8:42,180.3 secs,Planet NICFI Public,,133,106.3300318,16.61151149,non-forest,yes,forest restoration,,,high,2016
+140738356,568041723,105.8322753,17.02788062,kkfipd@gmail.com,FALSE,6/16/2021 8:48,310.6 secs,Planet NICFI Public,,133,105.8322753,17.02788062,non-forest,no,,,,high,
+140738357,568041724,106.2882602,16.42744668,kkfipd@gmail.com,FALSE,6/16/2021 8:49,101.3 secs,Planet NICFI Public,,133,106.2882602,16.42744668,forest,no,,,,high,
+140742371,568045548,106.6345607,16.54764127,thongkhamvorabout@gmail.com,FALSE,6/18/2021 5:44,314.3 secs,Mapbox Satellite,,233,106.6345607,16.54764127,forest,yes,other,,,medium,2015
+140742372,568045549,106.3149401,16.75865553,thongkhamvorabout@gmail.com,FALSE,6/18/2021 5:48,225.0 secs,Mapbox Satellite,,233,106.3149401,16.75865553,forest,yes,forest loss,,agriculture,high,2016
+140742373,568045550,106.5273019,16.73359253,thongkhamvorabout@gmail.com,FALSE,6/18/2021 5:52,228.8 secs,Mapbox Satellite,,233,106.5273019,16.73359253,forest,no,,,,medium,
+140742374,568045551,106.1015004,16.62390824,thongkhamvorabout@gmail.com,FALSE,6/18/2021 5:54,142.8 secs,Mapbox Satellite,,233,106.1015004,16.62390824,forest,yes,forest restoration,,,high,2015
+140742375,568045552,105.9527394,16.68319705,thongkhamvorabout@gmail.com,FALSE,6/18/2021 5:56,109.2 secs,Mapbox Satellite,,233,105.9527394,16.68319705,non-forest,yes,other,,,high,2011
+140742376,568045553,105.3188882,16.55922954,thongkhamvorabout@gmail.com,FALSE,6/18/2021 5:57,57.2 secs,Mapbox Satellite,,233,105.3188882,16.55922954,non-forest,no,,,,high,
+140742377,568045554,106.5472445,16.43041113,thongkhamvorabout@gmail.com,FALSE,6/18/2021 6:02,266.2 secs,Mapbox Satellite,,233,106.5472445,16.43041113,forest,yes,other,,,medium,2015
+140742378,568045555,106.5399681,16.24284289,thongkhamvorabout@gmail.com,FALSE,6/18/2021 6:05,212.3 secs,Mapbox Satellite,,233,106.5399681,16.24284289,non-forest,yes,forest loss,,agriculture,high,2019
+140742379,568045556,106.5391596,16.30428766,thongkhamvorabout@gmail.com,FALSE,6/18/2021 6:08,145.4 secs,Mapbox Satellite,,233,106.5391596,16.30428766,non-forest,yes,forest degradation,shifting agriculture,,high,2015
+140742380,568045557,105.2003105,16.3021317,thongkhamvorabout@gmail.com,FALSE,6/18/2021 6:09,96.9 secs,Mapbox Satellite,,233,105.2003105,16.3021317,non-forest,yes,other,,,high,2013
+140738368,568041735,106.4874167,16.29862827,chittanap@gmail.com,FALSE,6/15/2021 1:57,141.6 secs,Planet NICFI Public,,233,106.4874167,16.29862827,forest,yes,forest loss,,agriculture,high,2019
+140738369,568041736,106.2634667,16.45709109,chittanap@gmail.com,FALSE,6/15/2021 2:02,338.8 secs,Planet NICFI Public,,233,106.2634667,16.45709109,non-forest,yes,forest loss,,agriculture,high,2019
+140738370,568041737,106.5701515,16.36869687,chittanap@gmail.com,FALSE,6/15/2021 2:13,637.4 secs,Planet NICFI Public,,233,106.5701515,16.36869687,forest,yes,forest restoration,,,high,2018
+140738371,568041738,106.5084373,16.5064086,chittanap@gmail.com,FALSE,6/15/2021 2:15,110.2 secs,Planet NICFI Public,,233,106.5084373,16.5064086,forest,yes,forest degradation,selective logging,,medium,2015
+140738372,568041739,105.9055779,16.70394813,chittanap@gmail.com,FALSE,6/15/2021 2:23,489.4 secs,Planet NICFI Public,,233,105.9055779,16.70394813,non-forest,yes,forest loss,,agriculture,high,2019
+140738373,568041740,106.3688391,16.69936672,chittanap@gmail.com,FALSE,6/15/2021 2:25,106.8 secs,Planet NICFI Public,,233,106.3688391,16.69936672,forest,yes,forest restoration,,,medium,2015
+140738374,568041741,104.9178802,17.03677394,chittanap@gmail.com,FALSE,6/15/2021 2:27,135.2 secs,Planet NICFI Public,,233,104.9178802,17.03677394,forest,yes,forest loss,,agriculture,high,2015
+140738375,568041742,106.4971185,16.35144921,chittanap@gmail.com,FALSE,6/15/2021 2:28,70.2 secs,Planet NICFI Public,,233,106.4971185,16.35144921,forest,yes,forest loss,,agriculture,high,2012
+140738376,568041743,106.5211035,16.52473423,chittanap@gmail.com,FALSE,6/15/2021 2:30,83.1 secs,Planet NICFI Public,,233,106.5211035,16.52473423,forest,no,,,,high,
+140738377,568041744,106.2251984,16.75272665,chittanap@gmail.com,FALSE,6/15/2021 2:33,178.2 secs,Planet NICFI Public,,233,106.2251984,16.75272665,non-forest,yes,forest restoration,,,medium,2019
+140738378,568041745,105.9963975,16.89609777,chittanap@gmail.com,FALSE,6/15/2021 2:34,93.7 secs,Planet NICFI Public,,233,105.9963975,16.89609777,forest,yes,forest restoration,,,medium,2018
+140738379,568041746,106.4523824,16.66864434,chittanap@gmail.com,FALSE,6/15/2021 2:35,35.5 secs,Planet NICFI Public,,233,106.4523824,16.66864434,forest,yes,forest restoration,,,medium,2017
+140738380,568041747,105.901266,16.58510102,chittanap@gmail.com,FALSE,6/15/2021 2:36,86.8 secs,Planet NICFI Public,,233,105.901266,16.58510102,forest,yes,forest restoration,,,high,2010
+140738381,568041748,106.5628752,16.2873095,chittanap@gmail.com,FALSE,6/15/2021 2:37,45.5 secs,Planet NICFI Public,,233,106.5628752,16.2873095,forest,yes,forest restoration,,,high,2010
+140738382,568041749,106.6280928,16.57243477,chittanap@gmail.com,FALSE,6/15/2021 2:40,147.9 secs,Planet NICFI Public,,233,106.6280928,16.57243477,non-forest,yes,forest degradation,selective logging,,low,2019
+140738383,568041750,106.1071598,16.41801437,chittanap@gmail.com,FALSE,6/15/2021 2:41,88.9 secs,Planet NICFI Public,,233,106.1071598,16.41801437,forest,yes,forest restoration,,,high,2017
+140738384,568041751,105.0852363,16.46301997,chittanap@gmail.com,FALSE,6/15/2021 2:42,85.0 secs,Planet NICFI Public,,233,105.0852363,16.46301997,forest,yes,forest degradation,selective logging,,medium,2013
+140738385,568041752,105.9530089,16.68211907,chittanap@gmail.com,FALSE,6/15/2021 2:43,48.9 secs,Planet NICFI Public,,233,105.9530089,16.68211907,forest,yes,forest restoration,,,high,2010
+140738386,568041753,106.4709775,16.5064086,chittanap@gmail.com,FALSE,6/15/2021 2:44,53.6 secs,Planet NICFI Public,,233,106.4709775,16.5064086,forest,yes,forest loss,,agriculture,high,2016
+140738387,568041754,105.0485851,16.32557773,chittanap@gmail.com,FALSE,6/15/2021 2:45,47.3 secs,Planet NICFI Public,,233,105.0485851,16.32557773,non-forest,yes,forest loss,,agriculture,high,2018
+140738388,568041755,105.2242956,16.05689163,chittanap@gmail.com,FALSE,6/15/2021 2:47,97.9 secs,Planet NICFI Public,,251,105.2242956,16.05689163,non-forest,yes,forest restoration,,,medium,2018
+140738389,568041756,105.2342669,16.89070788,chittanap@gmail.com,FALSE,6/15/2021 2:49,160.4 secs,Planet NICFI Public,,251,105.2342669,16.89070788,non-forest,yes,forest degradation,selective logging,,medium,2019
+140738390,568041757,105.5226261,16.34552033,chittanap@gmail.com,FALSE,6/15/2021 2:51,105.5 secs,Planet NICFI Public,,251,105.5226261,16.34552033,forest,no,,,,high,
+140738391,568041758,105.6662667,16.26386347,chittanap@gmail.com,FALSE,6/15/2021 2:52,37.5 secs,Planet NICFI Public,,251,105.6662667,16.26386347,forest,yes,forest restoration,,,high,2015
+140738392,568041759,105.8670401,16.17142683,chittanap@gmail.com,FALSE,6/15/2021 2:53,71.3 secs,Planet NICFI Public,,251,105.8670401,16.17142683,non-forest,yes,forest loss,,pasture,medium,2019
+140738393,568041760,105.773256,16.66460192,chittanap@gmail.com,FALSE,6/15/2021 2:54,51.3 secs,Planet NICFI Public,,251,105.773256,16.66460192,non-forest,yes,forest degradation,selective logging,,high,2019
+140738394,568041761,105.8357788,16.40723459,chittanap@gmail.com,FALSE,6/15/2021 2:55,79.7 secs,Planet NICFI Public,,251,105.8357788,16.40723459,non-forest,yes,forest degradation,selective logging,,high,2016
+140738395,568041762,105.6913297,15.92564777,chittanap@gmail.com,FALSE,6/15/2021 2:56,59.5 secs,Planet NICFI Public,,251,105.6913297,15.92564777,non-forest,yes,forest degradation,selective logging,,medium,2019
+140738396,568041763,105.6538699,15.9439734,chittanap@gmail.com,FALSE,6/15/2021 2:59,185.3 secs,Planet NICFI Public,,251,105.6538699,15.9439734,non-forest,yes,forest degradation,selective logging,,low,2019
+140738397,568041764,104.8399963,16.92682015,chittanap@gmail.com,FALSE,6/15/2021 3:00,24.6 secs,Planet NICFI Public,,251,104.8399963,16.92682015,non-forest,no,,,,high,
+140738398,568041765,105.6161407,16.73628748,chittanap@gmail.com,FALSE,6/15/2021 3:00,50.0 secs,Planet NICFI Public,,251,105.6161407,16.73628748,non-forest,yes,forest loss,,agriculture,medium,2019
+140738399,568041766,104.9585739,16.5511447,chittanap@gmail.com,FALSE,6/15/2021 3:02,66.6 secs,Planet NICFI Public,,251,104.9585739,16.5511447,non-forest,no,,,,high,
+140738400,568041767,105.7953546,16.67106979,chittanap@gmail.com,FALSE,6/15/2021 3:02,26.3 secs,Planet NICFI Public,,251,105.7953546,16.67106979,forest,yes,forest restoration,,,high,2010
+140738401,568041768,104.8475421,16.72658567,chittanap@gmail.com,FALSE,6/15/2021 3:03,64.6 secs,Planet NICFI Public,,251,104.8475421,16.72658567,non-forest,yes,forest degradation,selective logging,,high,2013
+140738402,568041769,105.9023439,16.18085914,chittanap@gmail.com,FALSE,6/15/2021 3:04,65.3 secs,Planet NICFI Public,,251,105.9023439,16.18085914,non-forest,yes,forest restoration,,,medium,2016
+140738403,568041770,105.7371437,16.41531943,chittanap@gmail.com,FALSE,6/15/2021 3:07,155.9 secs,Planet NICFI Public,,251,105.7371437,16.41531943,non-forest,yes,forest degradation,other,,low,2019
+140738404,568041771,105.4199486,16.22155282,chittanap@gmail.com,FALSE,6/15/2021 3:13,402.2 secs,Planet NICFI Public,,251,105.4199486,16.22155282,non-forest,no,,,,medium,
+140738405,568041772,104.8742221,16.99015138,chittanap@gmail.com,FALSE,6/15/2021 3:14,28.7 secs,Planet NICFI Public,,251,104.8742221,16.99015138,non-forest,no,,,,medium,
+140738406,568041773,105.0030405,16.88612647,chittanap@gmail.com,FALSE,6/15/2021 3:25,650.0 secs,Planet NICFI Public,,251,105.0030405,16.88612647,non-forest,no,,,,high,
+140738407,568041774,105.6350053,15.99221293,chittanap@gmail.com,FALSE,6/15/2021 3:29,222.1 secs,Planet NICFI Public,,251,105.6350053,15.99221293,forest,yes,forest restoration,,,high,2013
+140738408,568041775,105.5924252,16.38729199,j.ferrand@forestcarbon.com,FALSE,6/11/2021 7:41,72.6 secs,Planet NICFI Public,,251,105.5924252,81,forest,no,,,,medium,
+140738409,568041776,105.4293809,16.85217015,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:07,839.4 secs,Planet NICFI Public,,251,105.4293809,82,forest,no,,,,high,
+140738410,568041777,105.1485676,17.00335661,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:14,267.5 secs,Planet NICFI Public,,251,105.1485676,83,non-forest,yes,forest loss,,agriculture,high,2019
+140738411,568041778,105.6118288,16.67726817,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:21,396.5 secs,Planet NICFI Public,,251,105.6118288,84,forest,yes,forest degradation,other,,high,2019
+140738412,568041779,104.9879488,16.29162141,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:26,295.4 secs,Mapbox Satellite,,251,104.9879488,85,non-forest,no,,,,medium,
+140738413,568041780,105.8398212,16.43634001,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:29,202.3 secs,Planet NICFI Public,,251,105.8398212,86,forest,no,,,,medium,
+140738414,568041781,105.4789679,16.34336437,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:36,432.2 secs,Planet NICFI Public,,251,105.4789679,87,non-forest,no,,,,high,
+140738415,568041782,105.974838,16.15390968,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:44,461.8 secs,Planet NICFI Public,,251,105.974838,88,non-forest,yes,forest loss,,agriculture,high,2016
+140738416,568041783,105.8931811,16.67026131,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:50,381.8 secs,Planet NICFI Public,,251,105.8931811,89,forest,no,,,,medium,
+140738417,568041784,105.7565474,16.45493513,j.ferrand@forestcarbon.com,FALSE,6/11/2021 8:56,333.1 secs,Mapbox Satellite,,251,105.7565474,90,forest,no,,,,medium,
+140738418,568041785,105.1216181,16.73251456,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:09,775.7 secs,Planet NICFI Public,,333,105.1216181,91,forest,yes,forest degradation,selective logging,,low,2017
+140738419,568041786,105.0822719,16.26574993,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:12,188.1 secs,Mapbox Satellite,,333,105.0822719,92,forest,no,,,,medium,
+140738420,568041787,105.0820024,16.53740048,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:14,106.1 secs,Planet NICFI Public,,333,105.0820024,93,non-forest,no,,,,high,
+140738421,568041788,105.2140548,17.04809271,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:16,125.3 secs,Planet NICFI Public,,333,105.2140548,94,non-forest,no,,,,high,
+140738422,568041789,104.9410567,16.9941938,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:30,872.4 secs,Planet NICFI Public,,333,104.9410567,95,forest,no,,,,low,
+140738423,568041790,105.1380573,16.58833495,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:36,328.2 secs,Planet NICFI Public,,333,105.1380573,96,forest,no,,,,medium,
+140738424,568041791,105.2105513,16.49023892,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:39,174.9 secs,Mapbox Satellite,,333,105.2105513,97,non-forest,no,,,,high,
+140738425,568041792,105.8317363,16.04206943,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:41,151.7 secs,Planet NICFI Public,,333,105.8317363,98,forest,no,,,,low,
+140738426,568041793,104.9119513,16.99931419,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:49,474.0 secs,Planet NICFI Public,,333,104.9119513,99,forest,no,,,,medium,
+140738427,568041794,105.8047869,16.04799831,j.ferrand@forestcarbon.com,FALSE,6/11/2021 9:51,111.7 secs,CODED Degradation Dipterocarp 2010 - 2019,,333,105.8047869,100,forest,no,,,,medium,
+140738428,568041795,105.1105688,17.07396419,j.ferrand@forestcarbon.com,FALSE,6/11/2021 10:11,1219.5 secs,Planet NICFI Public,,333,105.1105688,101,forest,yes,forest degradation,other,,medium,2019
+140738429,568041796,105.1747085,16.78156257,j.ferrand@forestcarbon.com,FALSE,6/11/2021 10:15,213.7 secs,Planet NICFI Public,,333,105.1747085,102,forest,no,,,,low,
+140738430,568041797,105.6045524,16.00622665,j.ferrand@forestcarbon.com,FALSE,6/11/2021 10:19,213.6 secs,Planet NICFI Public,,333,105.6045524,103,forest,no,,,,low,
+140738431,568041798,105.0682582,16.45116221,j.ferrand@forestcarbon.com,FALSE,6/11/2021 10:20,115.2 secs,Planet NICFI Public,,333,105.0682582,104,non-forest,yes,forest loss,,agriculture,high,2016
+140738432,568041799,105.1518015,16.74787575,j.ferrand@forestcarbon.com,FALSE,6/11/2021 10:26,86.1 secs,Planet NICFI Public,,333,105.1518015,105,forest,yes,forest degradation,selective logging,,low,2019
+140738433,568041800,104.8669457,16.51584091,j.ferrand@forestcarbon.com,FALSE,6/11/2021 13:51,12287.9 secs,CODED Degradation Dipterocarp 2010 - 2019,,333,104.8669457,106,forest,no,,,,medium,
+140738434,568041801,104.8281385,16.69748026,j.ferrand@forestcarbon.com,FALSE,6/11/2021 13:56,296.5 secs,Planet NICFI Public,,333,104.8281385,107,forest,yes,forest degradation,other,,low,2017
+140738435,568041802,105.9047694,16.01781492,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:05,559.4 secs,Planet NICFI Public,,333,105.9047694,108,non-forest,yes,forest loss,,development,high,2015
+140738436,568041803,105.0483156,16.33878297,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:13,252.0 secs,CODED Degradation Dipterocarp 2010 - 2019,,333,105.0483156,109,forest,yes,forest degradation,other,,medium,2016
+140738437,568041804,105.1097604,16.71688387,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:15,106.2 secs,Planet NICFI Public,,333,105.1097604,110,forest,yes,forest degradation,selective logging,,medium,2019
+140738438,568041805,105.251245,16.66190697,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:18,163.5 secs,Planet NICFI Public,,333,105.251245,111,forest,yes,forest degradation,selective logging,,medium,2018
+140738439,568041806,105.2345363,16.32935066,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:22,233.3 secs,Planet NICFI Public,,333,105.2345363,112,forest,no,,,,medium,
+140738440,568041807,106.4275889,16.14501636,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:26,241.9 secs,Planet NICFI Public,,333,106.4275889,113,forest,no,,,,low,
+140738441,568041808,104.7685802,16.83896492,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:28,151.9 secs,CODED Degradation Dipterocarp 2010 - 2019,,333,104.7685802,114,forest,no,,,,medium,
+140738442,568041809,104.8332589,16.68993441,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:31,149.6 secs,Planet NICFI Public,,333,104.8332589,115,forest,yes,forest degradation,other,,high,2017
+140738443,568041810,105.204353,16.4366095,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:32,61.6 secs,Planet NICFI Public,,333,105.204353,116,non-forest,no,,,,high,
+140738444,568041811,105.9198611,16.51476293,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:34,120.4 secs,Planet NICFI Public,,333,105.9198611,117,forest,no,,,,medium,
+140738445,568041812,105.1512625,16.3819021,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:35,94.2 secs,Planet NICFI Public,,333,105.1512625,118,non-forest,yes,forest loss,,agriculture,high,2019
+140738446,568041813,105.0480461,16.92870661,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:37,122.2 secs,Planet NICFI Public,,333,105.0480461,119,non-forest,yes,forest loss,,agriculture,high,2017
+140738447,568041814,104.9192277,16.71984831,j.ferrand@forestcarbon.com,FALSE,6/11/2021 14:39,74.4 secs,Planet NICFI Public,,333,104.9192277,120,forest,no,,,,medium,

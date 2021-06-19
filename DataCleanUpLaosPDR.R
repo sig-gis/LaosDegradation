@@ -7,13 +7,15 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 #GIS <- read.csv('CeoSmplGISv3.csv')
 #increase1<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer-sample-data-2021-06-15.csv')
 #increase2<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer--v2-sample-data-2021-06-15.csv')
+#concensus <- read.csv('recheck_JFpreKK.csv')
+#increase2 <- read.csv('IncreasedDensity2021-06-16.csv')
 
-#GISw_buffer <- read.csv('CompiledGisUpdated.csv')
+#GIS_buffer <- read.csv('CompiledGisUpdated.csv')
 GIS <- read.csv('CompiledForGisUpdated_nobuffers.csv')
 dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
-concensus <- read.csv('recheck_JFpreKK.csv')
-increase <- read.csv('IncreasedDensity2021-06-16.csv')
-
+concensus <- read.csv('recheck JFv2.csv')
+increase <- read.csv('IncreasedDensity2021-06-18.csv')
+smplCount <- read.csv('smplCount.csv')
 #######################################################
 #######################################################
 ################## Load map data ######################
@@ -164,6 +166,24 @@ sort(unique(GIS$strata_coded_year))
 
 colnames(GIS)
 head(GIS)
+
+#######################################################
+#######################################################
+################## add sample weights ######################
+#######################################################
+#######################################################
+head(smplCount)
+colnames(smplCount)[3]<-'smplStratCount'
+colnames(GIS)
+sort(unique(smplCount$Value))
+sort(unique(GIS$strata_out_v2))
+unique(GIS$smplStrata)
+
+GIS <- merge(GIS, smplCount[,c(2,3)], 
+              by.x = 'strata_out_v2', by.y = 'Value', 
+              all.x = T, all.y = F)
+head(GIS)
+tail(GIS)
 
 #######################################################
 #######################################################
@@ -328,12 +348,13 @@ head(concensus[,seq(from = 21, to = 25)])
 head(concensus[,seq(from = 26, to = 30)])
 head(concensus[,seq(from = 31, to = 34)])
 
+colnames(concensus)
 colnames(concensus)[1]<- 'LON'
 colnames(concensus)[4]<- 'plot_id'
 
 colnames(concensus)
 concensus<-concensus[,c('plot_id',"Jeremy.final.comment", "Suggested.change", "Chittana", "Khamkong",
-             "LC_Change_Dynamics","Year_degradation", "notes", "Year_Forest_Loss", "FINAL")]
+             "LC.Change.Dynamics","Year.of.degradation", "notes", "Year.of.Forest.Loss", "FINAL")]
 
 sort(unique(concensus$FINAL))
 concensus <- mutate(concensus, FINAL = case_when(
@@ -343,6 +364,7 @@ concensus <- mutate(concensus, FINAL = case_when(
   #(FINAL == 'forest restoration') ~ 'restoration',
   (FINAL == 'No change') ~ 'stable',
   (FINAL == 'not forest') ~ 'stable non-forest',
+  (FINAL == 'LOSS before 2015') ~ "stable non-forest",
   (FINAL == 'Not to include in analysis') ~ 'stable non-forest',
   TRUE ~ "NA"
 ))
@@ -370,6 +392,7 @@ dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-dataTemp$O
 #######################################################
 #######################################################
 colnames(increase)
+colnames(increase2)
 head(increase[,seq(1:5)])
 
 # "collection_time", "analysis_duration", "imagery_title", "imagery_attributions",
@@ -389,10 +412,14 @@ colnames(increase)[10]<- "O_def_type"
 colnames(increase)[11]<- 'O_yrChange'
 
 unique(increase$O_Ch_type)
-unique(dataTemp$FINAL)
-table(dataTemp$FINAL)
-increase$FINAL<-NULL
+head(increase[increase$O_Ch_type == "", ])
+increase$O_Ch_type[increase$O_Ch_type == ""]<-increase$O_LC[increase$O_Ch_type == ""]
+unique(increase$O_Ch_type)
 
+increase$FINAL<-NULL
+unique(dataTemp$FINAL)
+unique(increase$O_Ch_type)
+table(dataTemp$FINAL)
 increase <- mutate(increase, FINAL = case_when(
   (O_Ch_type == 'forest loss') ~ "loss",
   (O_Ch_type == 'forest degradation') ~ "degradation",
@@ -439,7 +466,7 @@ fulldata<- merge(CEOfull, GIS[,c(
   "frel_2015", "frel_2019", 
   #"strata_out", 
   "smplStrata", 'smplLab', 
-  "forestType")], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
+  "forestType", 'smplStratCount')], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
 head(fulldata)
 fulldata$forestType
 
