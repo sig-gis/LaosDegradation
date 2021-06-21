@@ -5,17 +5,20 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 
 ### Old spreadsheets ###
 #GIS <- read.csv('CeoSmplGISv3.csv')
+#GIS <- read.csv('CompiledForGisUpdated_nobuffers.csv')
 #increase1<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer-sample-data-2021-06-15.csv')
 #increase2<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer--v2-sample-data-2021-06-15.csv')
 #concensus <- read.csv('recheck_JFpreKK.csv')
+#concensus <- read.csv('recheck JFv2.csv')
 #increase2 <- read.csv('IncreasedDensity2021-06-16.csv')
+#smplCount <- read.csv('smplCount.csv')
 
-#GIS_buffer <- read.csv('CompiledGisUpdated.csv')
-GIS <- read.csv('CompiledForGisUpdated_nobuffers.csv')
+GIS <- read.csv('CompiledForGisUpdated_v5.csv')
 dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
-concensus <- read.csv('recheck JFv2.csv')
+concensus <- read.csv('recheck JFv2_KTRevisions.csv')
 increase <- read.csv('IncreasedDensity2021-06-18.csv')
-smplCount <- read.csv('smplCount.csv')
+smplCount <- read.csv('smplCountv2.csv')
+postStratCodedsmplCount <- read.csv('codedPost_strat_smplCountv2.csv')
 #######################################################
 #######################################################
 ################## Load map data ######################
@@ -162,8 +165,42 @@ GIS <- mutate(GIS, forestType = case_when(
 ))
 unique(GIS$forestType)
 
-sort(unique(GIS$strata_coded_year))
-
+# CODED post stratification
+sort(unique(GIS$post_strat_coded))
+GIS$post_strat_codedLab <- NULL
+GIS <- mutate(GIS, post_strat_codedLab = case_when(
+  (post_strat_coded == 100) ~ "stable forest evergreen",
+  (post_strat_coded == 111) ~ "evergreen fcdm",
+  (post_strat_coded == 121) ~ "evergreen frel",
+  (post_strat_coded == 131) ~ "evergreen coded loss",
+  (post_strat_coded == 133) ~ "evergreen coded degradation",
+  (post_strat_coded == 141) ~ "evergreen multi agreement",
+  (post_strat_coded == 143) ~ "evergreen multi agreement - coded degradation",
+  (post_strat_coded == 144) ~ "evergreen multi agreement - coded loss",
+  (post_strat_coded == 200) ~ "stable mixed",
+  (post_strat_coded == 211) ~ "mixed fcdm",
+  (post_strat_coded == 221) ~ "mixed frel",
+  (post_strat_coded == 231) ~ "mixed coded loss",
+  (post_strat_coded == 233) ~ "mixed coded degradation",
+  (post_strat_coded == 241) ~ "mixed multi agreement",
+  (post_strat_coded == 243) ~ "mixed multi agreement - coded degradation",
+  (post_strat_coded == 244) ~ "mixed multi agreement - coded loss",
+  (post_strat_coded == 251) ~ "mixed buffer",
+  (post_strat_coded == 253) ~ "mixed buffer - coded degradation",
+  (post_strat_coded == 254) ~ "mixed buffer - coded loss",
+  (post_strat_coded == 300) ~ "stable forest dipterocarp",
+  (post_strat_coded == 311) ~ "dipterocarp fcdm",
+  (post_strat_coded == 321) ~ "dipterocarp frel",
+  (post_strat_coded == 331) ~ "dipterocarp coded loss",
+  (post_strat_coded == 333) ~ "dipterocarp coded degradation",
+  (post_strat_coded == 341) ~ "dipterocarp multi agreement",
+  (post_strat_coded == 344) ~ "dipterocarp multi agreement - coded loss",
+  (post_strat_coded == 400) ~ "Non forest",
+  (post_strat_coded == 500) ~ "Non forest",
+  TRUE ~ "FixMe"
+))
+unique(GIS$post_strat_codedLab)
+GIS$post_strat_coded[GIS$post_strat_codedLab=='FixMe']
 colnames(GIS)
 head(GIS)
 
@@ -177,11 +214,30 @@ colnames(smplCount)[3]<-'smplStratCount'
 colnames(GIS)
 sort(unique(smplCount$Value))
 sort(unique(GIS$strata_out_v2))
-unique(GIS$smplStrata)
 
 GIS <- merge(GIS, smplCount[,c(2,3)], 
               by.x = 'strata_out_v2', by.y = 'Value', 
               all.x = T, all.y = F)
+head(GIS)
+tail(GIS)
+unique(GIS$smplStratCount)
+
+#######################################################
+#######################################################
+################## add coded post strat sample weights ######################
+#######################################################
+#######################################################
+head(postStratCodedsmplCount)
+colnames(postStratCodedsmplCount)[2]<-'PSCstrat'
+colnames(postStratCodedsmplCount)[3]<-'PSCstratCount'
+head(postStratCodedsmplCount)
+colnames(GIS)
+sort(unique(postStratCodedsmplCount$PSCstrat))
+sort(unique(GIS$post_strat_coded))
+
+GIS <- merge(GIS, postStratCodedsmplCount[,c(2,3)], 
+             by.x = 'post_strat_coded', by.y = 'PSCstrat', 
+             all.x = T, all.y = F)
 head(GIS)
 tail(GIS)
 
@@ -266,11 +322,20 @@ dataCEOsub<- dataCEO[,c("plot_id", "lon", "lat", "flagged",'email',
                         "Confidence","CW_confidence", "KK_confidence", 
                         "Pre2015")]
 
+dataCEOsub$Source <- 'initialSmple'
 head(dataCEOsub[,seq(1:9)])
 head(dataCEOsub[,seq(10:19)])
 head(dataCEOsub[,seq(21:29)])
 colnames(dataCEOsub)
 rm(dataCEO)
+
+#######################################################
+################## remove flagged plots ######################
+#######################################################
+
+table(dataCEOsub$flagged)
+dataCEOsub<-dataCEOsub[dataCEOsub$flagged != TRUE,]
+
 #######################################################
 ################## simplify labels ######################
 #######################################################
@@ -285,6 +350,7 @@ dataCEOsub <- mutate(dataCEOsub, O_Dynamics = case_when(
   TRUE ~ "FixMe"
 ))
 unique(dataCEOsub$O_Dynamics)
+dataCEOsub[dataCEOsub$O_Dynamics=='FixMe', ]
 dataCEOsub[dataCEOsub$O_Dynamics=='FixMe', c('O_LC','O_Ch_type','O_Change')]
 
 dataCEOsub <- mutate(dataCEOsub, J_Dynamics = case_when(
@@ -328,13 +394,6 @@ dataCEOsub$recheck[(
 colnames(dataCEOsub)
 #recheck<-dataCEOsub[(dataCEOsub$recheck == 1),c('email','O_Dynamics','J_Dynamics','KK_Dynamics')]
 
-#######################################################
-################## remove flagged plots ######################
-#######################################################
-
-table(dataCEOsub$flagged)
-dataCEOsub<-dataCEOsub[dataCEOsub$flagged != TRUE,]
-
 ###########################################################
 ###########################################################
 ####### consensus ##########################################
@@ -377,17 +436,21 @@ unique(concensus$FINAL)
 ################## merge with CEO data ######################
 #######################################################
 #######################################################
-dataTemp<- merge(dataCEOsub, concensus, by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE, all = T)
+dataTemp<- merge(dataCEOsub, concensus[,c('plot_id','FINAL')], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE, all = T)
 head(dataTemp[dataTemp$recheck == 1,])
 colnames(dataTemp)
 rm(dataCEOsub, concensus)
 
+dataTemp$Source[dataTemp$recheck== '1']<-'consensus'
+dataTemp[dataTemp$recheck== 1, c('FINAL')]
+dataTemp[dataTemp$recheck== 0, c('FINAL')]
+
 unique(dataTemp$FINAL[dataTemp$recheck == 1])
-dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] <-
+dataTemp$FINAL[(dataTemp$recheck == 0 & dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] <-
   dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] 
-dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)] <-
+dataTemp$FINAL[(dataTemp$recheck == 0 & dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)] <-
   dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)]
-dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]<- 
+dataTemp$FINAL[(dataTemp$recheck == 0 & dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]<- 
   dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]
 dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-
   dataTemp$O_Dynamics[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)] 
@@ -444,11 +507,11 @@ dataTemp<-dataTemp[, c("plot_id", "lon", "lat", "flagged",'email',
 #"pl_coded", "pl_codedlatear", "pl_fcdm", "pl_fcdmlatear", "pl_frel", 
 #"pl_strata_out", "pl_strata_out_name", "pl_union_deg", 
 "O_LC","O_Change","O_Ch_type","O_deg_driver","O_def_type",'O_yrChange',
-"Confidence", 'FINAL')]
+"Confidence", 'FINAL', 'Source')]
 
+increase$Source<-'phase2Smpl'
 colnames(dataTemp)
 colnames(increase)
-
 CEOfull<- rbind(dataTemp, increase)
 rm(dataTemp,increase)
 head(CEOfull)
