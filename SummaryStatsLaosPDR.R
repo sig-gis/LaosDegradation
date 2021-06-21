@@ -8,12 +8,13 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 ################## Load map data ######################
 #######################################################
 #######################################################
-data <- read.csv('ProcessedMergedData06172021.csv')
+data <- read.csv('ProcessedMergedData06202021.csv')
 
 ###########################################################
 ####### remove unlabeled plots #############################################
 ###########################################################
 colnames(data)
+data[data$FINAL == 'FixMe', ] 
 data<-data[data$FINAL != 'FixMe', ] 
 
 ###########################################################
@@ -21,7 +22,25 @@ data<-data[data$FINAL != 'FixMe', ]
 ###########################################################
 data[,c("FINAL", 'codedLab')]
 table(data$codedLab, data$FINAL)
+write.csv(table(data$codedLab, data$FINAL), file = 'Results\\intermedResults06202021.csv')
 
+###########################################################
+####### Diptero CEO #############################################
+###########################################################
+DipData<- data[data$forestType=='dipterocarp',]
+unique(DipData$codedLab)
+unique(DipData$FINAL)
+write.csv(data[DipData$codedLab == 'dipto degradation' & DipData$FINAL == 'degradation',], 
+          file = 'CEOExploration\\Diptero\\DegradationAgreement.csv')
+write.csv(data[DipData$codedLab == 'dipto degradation' & DipData$FINAL == 'stable forest',], 
+          file = 'CEOExploration\\Diptero\\Comission.csv')
+write.csv(data[(DipData$codedLab == 'dipto stable' | DipData$codedLab == 'loss') & 
+                 DipData$FINAL == 'degradation',], 
+          file = 'CEOExploration\\Diptero\\Omission.csv')
+
+###########################################################
+####### Map Evaluation -- CODED #############################################
+###########################################################
 sub<- data2[data2$forestType=='dipterocarp',]
 
 sub[,c('pl_plotid','O_LC','J_LC')]

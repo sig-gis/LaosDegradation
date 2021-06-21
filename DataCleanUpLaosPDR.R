@@ -363,10 +363,12 @@ concensus <- mutate(concensus, FINAL = case_when(
   #(FINAL == 'other') ~ 'other',
   #(FINAL == 'forest restoration') ~ 'restoration',
   (FINAL == 'No change') ~ 'stable',
+  (FINAL == 'stable forest') ~ 'stable forest',
+  (FINAL == 'stable non-forest') ~ 'stable non-forest',
   (FINAL == 'not forest') ~ 'stable non-forest',
   (FINAL == 'LOSS before 2015') ~ "stable non-forest",
   (FINAL == 'Not to include in analysis') ~ 'stable non-forest',
-  TRUE ~ "NA"
+  TRUE ~ "FixMe"
 ))
 unique(concensus$FINAL)
 
@@ -381,10 +383,14 @@ colnames(dataTemp)
 rm(dataCEOsub, concensus)
 
 unique(dataTemp$FINAL[dataTemp$recheck == 1])
-dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] <-dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] 
-dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)] <- dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)]
-dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]<- dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]
-dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-dataTemp$O_Dynamics[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)] 
+dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] <-
+  dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == "")] 
+dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)] <-
+  dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$J_Dynamics & dataTemp$KK_Dynamics == dataTemp$J_Dynamics)]
+dataTemp$FINAL[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]<- 
+  dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]
+dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-
+  dataTemp$O_Dynamics[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)] 
 
 #######################################################
 #######################################################
@@ -475,7 +481,7 @@ rm(CEOfull)
 rm(GIS)
 
 colnames(fulldata)
-write.csv(fulldata,file = 'ProcessedMergedData06172021.csv', row.names = F)
+write.csv(fulldata, file = 'ProcessedMergedData06202021.csv', row.names = F)
 
 ###########################################################
 ###########################################################

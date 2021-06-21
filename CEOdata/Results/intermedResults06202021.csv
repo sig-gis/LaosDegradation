@@ -1,0 +1,10 @@
+"","degradation","loss","restoration","stable forest","stable non-forest"
+"dipto degradation",9,4,0,14,4
+"dipto loss",3,15,0,5,6
+"dipto stable",5,6,0,13,10
+"evergreen degradation",11,4,6,10,6
+"evergreen forest loss",13,10,0,0,0
+"evergreen stable",11,4,1,19,0
+"mixed degradation",5,7,9,1,0
+"mixed loss",8,19,0,1,2
+"mixed stable",22,6,6,23,6
