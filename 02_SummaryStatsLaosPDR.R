@@ -34,14 +34,27 @@ SavData[,c("FINAL", 'codedLab')]
 table(SavData$codedLab, SavData$FINAL)
 write.csv(table(SavData$codedLab, SavData$FINAL), file = 'Results\\intermedResults06202021.csv')
 
+colnames(SavData)
 ###########################################################
 ####### area estimates #############################################
 ###########################################################
-srs_design <- svydesign(id = ~1, fpc = ~fpc, data = SavData)
+strat_design <- svydesign(id = ~1, strata = ~smplStrata, fpc = ~smplStratCount, data = SavData)
+strat_design
 
+activityData <- svytotal(~FINAL, strat_design)
+activityData*0.09
 
+diptero <- subset(strat_design, forestType == 'dipterocarp')
+DactivityData <- svytotal(~FINAL, diptero)
+DactivityData
 
+mixed<- subset(strat_design, forestType == 'mixed')
+MactivityData <- svytotal(~FINAL, mixed)
+MactivityData
 
+ever <- subset(strat_design, forestType == 'forest evergreen')
+EactivityData <- svytotal(~FINAL, ever)
+EactivityData
 
 ###########################################################
 ####### Diptero CEO #############################################
