@@ -1,0 +1,6 @@
+﻿plot_id,sample_id,lon,lat,email,flagged,collection_time,analysis_duration,imagery_title,imagery_attributions,sample_geom,pl_plotid,"Land cover, 2019",Change?,Change type?,Driver of degradation?,Deforestation type,Confidence,Year of change
+140795956,568545295,105.7463066,16.70260066,karistenneson@gmail.com,false,2021-06-20 21:35,380.3 secs,Planet NICFI Public,,POINT(105.7463066 16.70260066),11,forest,no,,,,medium,
+140795957,568545296,105.8770114,16.7702438,j.ferrand@forestcarbon.com,false,2021-06-21 03:41,1797.4 secs,Planet NICFI Public,,POINT(105.8770114 16.7702438),15,forest,yes,forest degradation,other,,medium,2018
+140795958,568545297,104.8685627,16.46409795,j.ferrand@forestcarbon.com,false,2021-06-21 03:51,589.6 secs,Planet NICFI Public,,POINT(104.8685627 16.46409795),154,non-forest,yes,forest loss,,agriculture,medium,2018
+140795959,568545298,105.9783414,16.13208062,j.ferrand@forestcarbon.com,false,2021-06-21 04:11,1212.8 secs,Bing Maps,,POINT(105.9783414 16.13208062),159,non-forest,yes,forest loss,,agriculture,low,2014
+140795960,568545299,106.1058123,16.36896636,j.ferrand@forestcarbon.com,false,2021-06-21 04:14,155.5 secs,Planet NICFI Public,,POINT(106.1058123 16.36896636),163,forest,no,,,,low,

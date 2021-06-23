@@ -10,6 +10,7 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 #######################################################
 #######################################################
 SavData <- read.csv('ProcessedMergedData06202021.csv')
+SavData <- read.csv('ProcessedMergedData06222021.csv')
 
 ###########################################################
 ####### remove unlabeled plots #############################################
@@ -42,6 +43,7 @@ strat_design <- svydesign(id = ~1, strata = ~smplStrata, fpc = ~smplStratCount, 
 strat_design
 
 activityData <- svytotal(~FINAL, strat_design)
+activityData
 activityData*0.09
 
 diptero <- subset(strat_design, forestType == 'dipterocarp')
@@ -63,15 +65,21 @@ DipData<- SavData[SavData$forestType=='dipterocarp',]
 unique(DipData$codedLab)
 unique(DipData$FINAL)
 head(DipData)
-write.csv(DipData[DipData$codedLab == 'dipto degradation' & DipData$FINAL == 'degradation',c(1:3)], 
+write.csv(DipData[DipData$codedLab == 'dipto degradation' & DipData$FINAL == 'degradation',c('LON','LAT','PLOTID', 'plot_id','strata_coded_year',
+                                                                                             "O_LC", "O_Change", "O_Ch_type", "O_deg_driver",
+                                                                                             "O_def_type", "O_yrChange", "Confidence", "FINAL")], 
           file = 'CEOExploration\\Diptero\\DegradationAgreev2.csv', row.names = F)
 
-write.csv(DipData[DipData$codedLab == 'dipto degradation' & DipData$FINAL == 'stable forest',c(1:3)], 
+write.csv(DipData[DipData$codedLab == 'dipto degradation' & DipData$FINAL == 'stable forest',c('LON','LAT','PLOTID', 'plot_id','strata_coded_year',
+                                                                                                "O_LC", "O_Change", "O_Ch_type", "O_deg_driver",
+                                                                                                "O_def_type", "O_yrChange", "Confidence", "FINAL")], 
           file = 'CEOExploration\\Diptero\\Commissionv2.csv', row.names = F)
 
 
 write.csv(DipData[(DipData$codedLab == 'dipto stable' | DipData$codedLab == 'loss') & 
-                    DipData$FINAL == 'degradation',c(1:3)], 
+                    DipData$FINAL == 'degradation',c('LON','LAT','PLOTID', 'plot_id','strata_coded_year',
+                                                     "O_LC", "O_Change", "O_Ch_type", "O_deg_driver",
+                                                     "O_def_type", "O_yrChange", "Confidence", "FINAL")], 
           file = 'CEOExploration\\Diptero\\Omissionv2.csv', row.names = F)
 
 

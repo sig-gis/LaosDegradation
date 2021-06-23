@@ -1,10 +1,10 @@
-"LON","LAT","PLOTID"
-104.8852714,16.67187827,28
-105.1216181,16.73251456,275
-105.1105688,17.07396419,285
-105.1518015,16.74787575,289
-104.8281385,16.69748026,291
-105.0483156,16.33878297,293
-105.1097604,16.71688387,294
-105.251245,16.66190697,295
-104.8332589,16.68993441,299
+"LON","LAT","PLOTID","plot_id","strata_coded_year","O_LC","O_Change","O_Ch_type","O_deg_driver","O_def_type","O_yrChange","Confidence","FINAL"
+104.8852714,16.67187827,0,139342253,2016,"forest","yes","forest degradation","shifting agriculture","",2016,"high","degradation"
+105.1216181,16.73251456,1,140738418,2017,"forest","yes","forest degradation","selective logging","",2017,"low","degradation"
+105.1105688,17.07396419,1,140738428,2015,"forest","yes","forest degradation","other","",2019,"medium","degradation"
+105.1518015,16.74787575,1,140738432,2017,"forest","yes","forest degradation","selective logging","",2019,"low","degradation"
+104.8281385,16.69748026,1,140738434,2016,"forest","yes","forest degradation","other","",2017,"low","degradation"
+105.0483156,16.33878297,1,140738436,2019,"forest","yes","forest degradation","other","",2016,"medium","degradation"
+105.1097604,16.71688387,0,140738437,2015,"forest","yes","forest degradation","selective logging","",2019,"medium","degradation"
+105.251245,16.66190697,1,140738438,2018,"forest","yes","forest degradation","selective logging","",2018,"medium","degradation"
+104.8332589,16.68993441,1,140738442,2018,"forest","yes","forest degradation","other","",2017,"high","degradation"

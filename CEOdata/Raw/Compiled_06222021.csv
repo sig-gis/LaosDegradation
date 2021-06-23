@@ -1,0 +1,63 @@
+﻿Project,email,flagged,pl_plotid,pl_plot_id,pl_final,"Land cover, 2019",Change?,Change type?,Driver of degradation?,Deforestation type,Confidence,Year of change
+com_diptero,j.ferrand@forestcarbon.com,FALSE,276,140738419,,forest,no,,,,low,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,279,140738422,,non-forest,no,,,,low,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,280,140738423,,forest,no,,,,low,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,282,140738425,,forest,no,,,,medium,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,283,140738426,,non-forest,yes,forest loss,,agriculture,medium,2019
+com_diptero,,,284,140738427,,,,,,,,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,286,140738429,,forest,no,,,,medium,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,287,140738430,,forest,no,,,,medium,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,290,140738433,,forest,no,,,,low,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,296,140738439,,forest,no,,,,low,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,297,140738440,,forest,yes,forest degradation,other,,low,2019
+com_diptero,j.ferrand@forestcarbon.com,FALSE,298,140738441,,non-forest,yes,forest loss,,agriculture,low,2019
+com_diptero,j.ferrand@forestcarbon.com,FALSE,301,140738444,,forest,no,,,,medium,
+com_diptero,j.ferrand@forestcarbon.com,FALSE,304,140738447,,forest,no,,,,medium,
+com_ever,j.ferrand@forestcarbon.com,FALSE,195,140738328,stable forest,forest,yes,forest degradation,shifting agriculture,,medium,2015
+com_ever,j.ferrand@forestcarbon.com,FALSE,202,140738335,stable forest,forest,yes,forest degradation,selective logging,,low,2015
+com_ever,j.ferrand@forestcarbon.com,FALSE,206,140738339,stable forest,forest,yes,forest degradation,selective logging,,low,2017
+com_ever,j.ferrand@forestcarbon.com,FALSE,208,140738341,stable forest,forest,yes,forest degradation,shifting agriculture,,medium,2017
+com_ever,j.ferrand@forestcarbon.com,FALSE,210,140738343,stable forest,forest,yes,forest degradation,shifting agriculture,,medium,2017
+com_ever,j.ferrand@forestcarbon.com,FALSE,211,140738344,stable forest,forest,no,,,,low,
+com_ever,j.ferrand@forestcarbon.com,FALSE,212,140738345,stable forest,forest,yes,forest degradation,shifting agriculture,,medium,2016
+com_ever,j.ferrand@forestcarbon.com,FALSE,214,140738347,stable forest,forest,yes,forest degradation,selective logging,,low,2015
+com_ever,j.ferrand@forestcarbon.com,FALSE,215,140738348,stable forest,forest,yes,forest degradation,shifting agriculture,,medium,2015
+com_ever,j.ferrand@forestcarbon.com,FALSE,224,140738357,stable forest,forest,yes,forest degradation,shifting agriculture,,low,2015
+com_mixed,j.ferrand@forestcarbon.com,FALSE,233,140738376,stable forest,forest,yes,forest degradation,shifting agriculture,,medium,2016
+omiss_diptero,j.ferrand@forestcarbon.com,FALSE,15,139342240,,forest,yes,forest degradation,other,,medium,2018
+omiss_diptero,j.ferrand@forestcarbon.com,FALSE,154,139430109,,non-forest,yes,forest loss,,agriculture,medium,2018
+omiss_diptero,j.ferrand@forestcarbon.com,FALSE,159,139430114,,non-forest,yes,forest loss,,agriculture,low,2014
+omiss_diptero,j.ferrand@forestcarbon.com,FALSE,163,139430118,,forest,no,,,,low,
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,101,139378023,degradation,forest,yes,forest degradation,selective logging,,medium,2018
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,102,139378024,degradation,forest,no,,,,low,
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,103,139378025,degradation,forest,no,,,,low,
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,107,139378029,degradation,forest,yes,forest degradation,other,,medium,2017
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,111,139378033,degradation,non-forest,yes,forest loss,,agriculture,medium,2017
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,112,139378034,degradation,non-forest,yes,forest loss,,agriculture,medium,2017
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,114,139378036,degradation,forest,yes,forest degradation,shifting agriculture,,medium,2018
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,115,139378037,degradation,forest,no,,,,low,
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,116,139378038,degradation,non-forest,yes,forest loss,,agriculture,medium,2013
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,118,139378040,degradation,forest,no,,,,low,
+omiss_ever,j.ferrand@forestcarbon.com,FALSE,119,139378041,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,50,139377972,degradation,forest,yes,forest degradation,shifting agriculture,,low,2018
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,52,139377974,degradation,forest,no,,,,medium,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,53,139377975,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,54,139377976,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,57,139377979,degradation,forest,yes,forest degradation,selective logging,,medium,2018
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,63,139377985,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,64,139377986,degradation,forest,yes,forest degradation,selective logging,,medium,2018
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,65,139377987,degradation,forest,no,,,,medium,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,66,139377988,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,67,139377989,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,68,139377990,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,69,139377991,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,167,139430122,degradation,forest,yes,forest degradation,shifting agriculture,,low,2018
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,173,139430128,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,174,139430129,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,246,140738389,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,250,140738393,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,251,140738394,degradation,forest,no,,,,medium,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,253,140738396,degradation,forest,yes,forest degradation,other,,low,2019
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,258,140738401,degradation,forest,no,,,,medium,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,260,140738403,degradation,forest,no,,,,low,
+omiss_mixed,j.ferrand@forestcarbon.com,FALSE,268,140738411,degradation,forest,yes,forest degradation,other,,low,2019

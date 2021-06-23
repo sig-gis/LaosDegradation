@@ -14,11 +14,16 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 #smplCount <- read.csv('smplCount.csv')
 
 GIS <- read.csv('CompiledForGisUpdated_v5.csv')
+GIS[GIS$plot_id == 140742371,]
+
 dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
 concensus <- read.csv('recheck JFv2_KTRevisions.csv')
 increase <- read.csv('IncreasedDensity2021-06-18.csv')
+increase[increase$ï..plot_id == 140742371,]
+
 smplCount <- read.csv('smplCountv2.csv')
 postStratCodedsmplCount <- read.csv('codedPost_strat_smplCountv2.csv')
+recheck <- read.csv('Raw\\Compiled_06222021.csv')
 #######################################################
 #######################################################
 ################## Load map data ######################
@@ -248,8 +253,9 @@ tail(GIS)
 #######################################################
 head(dataCEO)
 colnames(dataCEO)
-colnames(dataCEO)[1]<- 'plot_id'
 
+colnames(dataCEO)[1]<- 'plot_id'
+dataCEO[dataCEO$plot_id == 140742371,]
 #"Land.cover..2019", 
 colnames(dataCEO)[24]<- 'O_LC'
 #"Change.", 
@@ -393,6 +399,7 @@ dataCEOsub$recheck[(
 
 colnames(dataCEOsub)
 #recheck<-dataCEOsub[(dataCEOsub$recheck == 1),c('email','O_Dynamics','J_Dynamics','KK_Dynamics')]
+dataCEOsub[dataCEOsub$plot_id == 140742371,]
 
 ###########################################################
 ###########################################################
@@ -410,6 +417,7 @@ head(concensus[,seq(from = 31, to = 34)])
 colnames(concensus)
 colnames(concensus)[1]<- 'LON'
 colnames(concensus)[4]<- 'plot_id'
+concensus[concensus$plot_id == 140742371,]
 
 colnames(concensus)
 concensus<-concensus[,c('plot_id',"Jeremy.final.comment", "Suggested.change", "Chittana", "Khamkong",
@@ -439,6 +447,7 @@ unique(concensus$FINAL)
 dataTemp<- merge(dataCEOsub, concensus[,c('plot_id','FINAL')], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE, all = T)
 head(dataTemp[dataTemp$recheck == 1,])
 colnames(dataTemp)
+dataTemp[dataTemp$plot_id == 140742371,]
 rm(dataCEOsub, concensus)
 
 dataTemp$Source[dataTemp$recheck== '1']<-'consensus'
@@ -461,7 +470,6 @@ dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-
 #######################################################
 #######################################################
 colnames(increase)
-colnames(increase2)
 head(increase[,seq(1:5)])
 
 # "collection_time", "analysis_duration", "imagery_title", "imagery_attributions",
@@ -473,6 +481,8 @@ increase<-increase[, c("ï..plot_id", "lon", "lat", "flagged", "email",
                        "Land.cover..2019", "Change.", "Change.type.",
                        "Driver.of.degradation.", "Deforestation.type", "Year.of.change", "Confidence")]        
 colnames(increase)[1]<- 'plot_id'
+increase[increase$plot_id == 140742371,]
+
 colnames(increase)[6]<- "O_LC"
 colnames(increase)[7]<- "O_Change"
 colnames(increase)[8]<- "O_Ch_type"
@@ -513,6 +523,10 @@ increase$Source<-'phase2Smpl'
 colnames(dataTemp)
 colnames(increase)
 CEOfull<- rbind(dataTemp, increase)
+CEOfull[CEOfull$plot_id == 140742371,]
+dataTemp[dataTemp$plot_id == 140742371,]
+increase[increase$plot_id == 140742371,]
+
 rm(dataTemp,increase)
 head(CEOfull)
 tail(CEOfull)
@@ -520,6 +534,53 @@ CEOfull$Post2015<-0
 CEOfull$O_Change[CEOfull$O_yrChange>2000]
 CEOfull$Post2015[CEOfull$O_yrChange>2014 ]<-1
 
+
+#######################################################
+#######################################################
+################## merge rechecked data and CEO data ######################
+#######################################################
+#######################################################
+head(recheck)
+colnames(recheck)[1]<-"Project"
+colnames(recheck)[7]<-"LandCover_2019"
+colnames(recheck)[8]<-"Change"
+colnames(recheck)[9]<-"Change_type"
+colnames(recheck)[10]<-"Driver_of_degradation"
+colnames(recheck)[11]<-"Deforestation_type"
+colnames(recheck)[13]<-"Change_Yr"
+recheck$recheckFinal <- 1
+head(recheck)
+
+recheck <- mutate(recheck, recheckFinal = case_when(
+  (LandCover_2019 == 'non-forest') ~ 'stable non-forest',
+  (LandCover_2019 != 'non-forest' & Change_type == 'forest loss') ~ "loss",
+  (LandCover_2019 != 'non-forest' & Change_type == 'forest degradation') ~ "degradation",
+  (LandCover_2019 != 'non-forest' & Change == 'no')  ~ 'stable forest',
+  TRUE ~ 'FixMe'
+))
+unique(recheck$recheckFinal)
+recheck[recheck$recheckFinal == 'FixMe',]
+recheck$flagged[recheck$recheckFinal == 'FixMe']<-'yes'
+recheck$recheck <- 1
+recheck<-recheck[recheck$flagged != 'yes',]
+
+recheck[(recheck$recheckFinal == 'loss' | recheck$recheckFinal == 'degradation'),]
+recheck$Change_Yr[(recheck$recheckFinal != 'degradation')]<- NA
+colnames(CEOfull)
+colnames(recheck)
+
+revisedData<- merge(CEOfull, recheck[,c(
+  "pl_plot_id", "Project", "LandCover_2019", "Change",       
+  "Change_type", "Driver_of_degradation","Deforestation_type",           
+  "Change_Yr", 'recheckFinal', 'recheck')], by.x = 'plot_id', by.y = 'pl_plot_id', no.dups = TRUE, all.x = T)
+head(revisedData)
+
+revisedData$Source[!is.na(revisedData$recheck)] <- revisedData$Project[!is.na(revisedData$recheck)]
+revisedData$O_yrChange[!is.na(revisedData$recheck)] <- revisedData$Change_Yr[!is.na(revisedData$recheck)]
+revisedData$FINAL[!is.na(revisedData$recheck)] <- revisedData$recheckFinal[!is.na(revisedData$recheck)]
+
+revisedData<-revisedData[,colnames(CEOfull)]
+head(revisedData)
 #######################################################
 #######################################################
 ################## merge GIS and CEO data ######################
@@ -527,24 +588,32 @@ CEOfull$Post2015[CEOfull$O_yrChange>2014 ]<-1
 #######################################################
 
 sort(colnames(GIS))
-sort(colnames(CEOfull))
-fulldata<- merge(CEOfull, GIS[,c(
+sort(colnames(revisedData))
+fulldata<- merge(revisedData, GIS[,c(
   "plot_id", 
   "codedLab", "strata_coded_year", 
   "fcdm", 
   "frel_2015", "frel_2019", 
   #"strata_out", 
   "smplStrata", 'smplLab', 
-  "forestType", 'smplStratCount')], by.x = 'plot_id', by.y = 'plot_id', no.dups = TRUE)
+  "forestType", 'smplStratCount')], by.x = 'plot_id', by.y = 'plot_id')#, all.x = T)
+
+#
+fulldata$plot_id[is.na(fulldata$codedLab)]
+fulldata$lon[is.na(fulldata$codedLab)]
+sort(unique(GIS$plot_id))
+
 head(fulldata)
+tail(fulldata)
 fulldata$forestType
 
 colnames(fulldata)
-rm(CEOfull)
+rm(CEOfull, revisedData)
 rm(GIS)
 
 colnames(fulldata)
-write.csv(fulldata, file = 'ProcessedMergedData06202021.csv', row.names = F)
+head(fulldata)
+write.csv(fulldata, file = 'ProcessedMergedData06222021.csv', row.names = F)
 
 ###########################################################
 ###########################################################

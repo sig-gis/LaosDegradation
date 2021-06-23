@@ -1,0 +1,15 @@
+﻿plot_id,sample_id,lon,lat,email,flagged,collection_time,analysis_duration,imagery_title,imagery_attributions,sample_geom,pl_plotid,"Land cover, 2019",Change?,Change type?,Driver of degradation?,Deforestation type,Confidence,Year of change
+140795942,568545281,105.0822719,16.26574993,j.ferrand@forestcarbon.com,false,2021-06-21 09:15,222.0 secs,Planet NICFI Public,,POINT(105.0822719 16.26574993),276,forest,no,,,,low,
+140795943,568545282,104.9410567,16.9941938,j.ferrand@forestcarbon.com,false,2021-06-21 09:16,72.5 secs,Planet NICFI Public,,POINT(104.9410567 16.9941938),279,non-forest,no,,,,low,
+140795944,568545283,105.1380573,16.58833495,j.ferrand@forestcarbon.com,false,2021-06-21 09:18,90.2 secs,Planet NICFI Public,,POINT(105.1380573 16.58833495),280,forest,no,,,,low,
+140795945,568545284,105.8317363,16.04206943,j.ferrand@forestcarbon.com,false,2021-06-21 09:18,46.2 secs,Planet NICFI Public,,POINT(105.8317363 16.04206943),282,forest,no,,,,medium,
+140795946,568545285,104.9119513,16.99931419,j.ferrand@forestcarbon.com,false,2021-06-21 09:20,123.6 secs,Planet NICFI Public,,POINT(104.9119513 16.99931419),283,non-forest,yes,forest loss,,agriculture,medium,2019
+140795947,568545286,105.8047869,16.04799831,,,,,,,POINT(105.8047869 16.04799831),284,,,,,,,
+140795948,568545287,105.1747085,16.78156257,j.ferrand@forestcarbon.com,false,2021-06-21 09:22,105.0 secs,Planet NICFI Public,,POINT(105.1747085 16.78156257),286,forest,no,,,,medium,
+140795949,568545288,105.6045524,16.00622665,j.ferrand@forestcarbon.com,false,2021-06-21 09:24,73.7 secs,Planet NICFI Public,,POINT(105.6045524 16.00622665),287,forest,no,,,,medium,
+140795950,568545289,104.8669457,16.51584091,j.ferrand@forestcarbon.com,false,2021-06-21 09:27,219.7 secs,Planet NICFI Public,,POINT(104.8669457 16.51584091),290,forest,no,,,,low,
+140795951,568545290,105.2345363,16.32935066,j.ferrand@forestcarbon.com,false,2021-06-21 09:29,84.8 secs,Planet NICFI Public,,POINT(105.2345363 16.32935066),296,forest,no,,,,low,
+140795952,568545291,106.4275889,16.14501636,j.ferrand@forestcarbon.com,false,2021-06-21 09:31,152.7 secs,Planet NICFI Public,,POINT(106.4275889 16.14501636),297,forest,yes,forest degradation,other,,low,2019
+140795953,568545292,104.7685802,16.83896492,j.ferrand@forestcarbon.com,false,2021-06-21 09:34,151.5 secs,Planet NICFI Public,,POINT(104.7685802 16.83896492),298,non-forest,yes,forest loss,,agriculture,low,2019
+140795954,568545293,105.9198611,16.51476293,j.ferrand@forestcarbon.com,false,2021-06-21 09:35,66.9 secs,Planet NICFI Public,,POINT(105.9198611 16.51476293),301,forest,no,,,,medium,
+140795955,568545294,104.9192277,16.71984831,j.ferrand@forestcarbon.com,false,2021-06-21 09:36,35.9 secs,Planet NICFI Public,,POINT(104.9192277 16.71984831),304,forest,no,,,,medium,
