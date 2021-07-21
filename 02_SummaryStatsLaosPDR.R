@@ -1,3 +1,4 @@
+
 library(tidyverse)
 library(tidyr)
 library(survey)
@@ -9,23 +10,21 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 ################## Load map data ######################
 #######################################################
 #######################################################
-SavData <- read.csv('ProcessedMergedData06202021.csv')
-SavData <- read.csv('ProcessedMergedData06222021.csv')
+#SavData <- read.csv('ProcessedMergedData06202021.csv')
+#SavData <- read.csv('ProcessedMergedData06232021.csv')
+SavData <- read.csv('ProcessedMergedData07152021.csv')
 
 ###########################################################
 ####### remove unlabeled plots #############################################
 ###########################################################
 colnames(SavData)
-SavData$PLOTID<- seq(from= 1, to= length(SavData$PLOTID))
-SavData<-SavData[,c("lon", "lat", "PLOTID", "plot_id", "flagged", "email", "O_LC","O_Change", "O_Ch_type", 
-              "O_deg_driver", "O_def_type","O_yrChange", "Confidence", "FINAL", "Post2015", "codedLab", 
-              "strata_coded_year", "fcdm", "frel_2015", "frel_2019", "smplStrata", "smplLab", 
-              "forestType", "smplStratCount")]
-
-colnames(SavData)[1]<-'LON'
-colnames(SavData)[2]<-"LAT"
 head(SavData)
 SavData[SavData$FINAL == 'FixMe', ] 
+
+unique(SavData$FINAL)
+
+SavData[SavData$FINAL == 'other', ] 
+write.csv(SavData[SavData$FINAL == 'other', ], file = 'QAQC07132021.csv')
 SavData<-SavData[SavData$FINAL != 'FixMe', ] 
 
 ###########################################################
@@ -33,7 +32,7 @@ SavData<-SavData[SavData$FINAL != 'FixMe', ]
 ###########################################################
 SavData[,c("FINAL", 'codedLab')]
 table(SavData$codedLab, SavData$FINAL)
-write.csv(table(SavData$codedLab, SavData$FINAL), file = 'Results\\intermedResults06202021.csv')
+write.csv(table(SavData$codedLab, SavData$FINAL), file = 'Results\\intermedResults06232021.csv')
 
 colnames(SavData)
 ###########################################################

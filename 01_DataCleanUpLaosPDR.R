@@ -6,32 +6,32 @@ setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Compari
 ### Old spreadsheets ###
 #GIS <- read.csv('CeoSmplGISv3.csv')
 #GIS <- read.csv('CompiledForGisUpdated_nobuffers.csv')
+#GIS <- read.csv('CompiledForGisUpdated_v5.csv')
 #increase1<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer-sample-data-2021-06-15.csv')
 #increase2<-read.csv('ceo-Increased-sample-density-for-CODED-map-and-buffer--v2-sample-data-2021-06-15.csv')
 #concensus <- read.csv('recheck_JFpreKK.csv')
 #concensus <- read.csv('recheck JFv2.csv')
 #increase2 <- read.csv('IncreasedDensity2021-06-16.csv')
 #smplCount <- read.csv('smplCount.csv')
+##recheck <- read.csv('Raw\\Compiled_06222021.csv')
 
-GIS <- read.csv('CompiledForGisUpdated_v5.csv')
-GIS[GIS$plot_id == 140742371,]
-
+GIS <- read.csv('CompiledForGisUpdated_v6.csv')
 dataCEO <- read.csv('CEO_CompiledValidationPoints.csv')
 concensus <- read.csv('recheck JFv2_KTRevisions.csv')
 increase <- read.csv('IncreasedDensity2021-06-18.csv')
-increase[increase$ï..plot_id == 140742371,]
-
 smplCount <- read.csv('smplCountv2.csv')
 postStratCodedsmplCount <- read.csv('codedPost_strat_smplCountv2.csv')
-recheck <- read.csv('Raw\\Compiled_06222021.csv')
+recheck <- read.csv('Raw\\ceo-recheck-2021-07-13_noutf8v2-Interpreted.csv')
+
 #######################################################
 #######################################################
 ################## Load map data ######################
 #######################################################
 #######################################################
 head(GIS) 
-colnames(GIS)
 
+colnames(GIS)
+colnames(GIS)[11]<- 'plot_id'
 unique(GIS$strata_coded)
 GIS$codedLab <- GIS$strata_coded
 GIS <- mutate(GIS, codedLab = case_when(
@@ -463,7 +463,7 @@ dataTemp$FINAL[(dataTemp$recheck == 0 & dataTemp$O_Dynamics == dataTemp$KK_Dynam
   dataTemp$O_Dynamics[(dataTemp$O_Dynamics == dataTemp$KK_Dynamics & dataTemp$J_Dynamics == "")]
 dataTemp$FINAL[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)]<-
   dataTemp$O_Dynamics[(dataTemp$recheck == 0 & is.na(dataTemp$FINAL) == T)] 
-
+unique(dataTemp$FINAL)
 #######################################################
 #######################################################
 ################## merge CEO data and increased density ######################
@@ -481,7 +481,6 @@ increase<-increase[, c("ï..plot_id", "lon", "lat", "flagged", "email",
                        "Land.cover..2019", "Change.", "Change.type.",
                        "Driver.of.degradation.", "Deforestation.type", "Year.of.change", "Confidence")]        
 colnames(increase)[1]<- 'plot_id'
-increase[increase$plot_id == 140742371,]
 
 colnames(increase)[6]<- "O_LC"
 colnames(increase)[7]<- "O_Change"
@@ -494,6 +493,7 @@ unique(increase$O_Ch_type)
 head(increase[increase$O_Ch_type == "", ])
 increase$O_Ch_type[increase$O_Ch_type == ""]<-increase$O_LC[increase$O_Ch_type == ""]
 unique(increase$O_Ch_type)
+head(increase[increase$O_Ch_type == "other", ])
 
 increase$FINAL<-NULL
 unique(dataTemp$FINAL)
@@ -502,15 +502,16 @@ table(dataTemp$FINAL)
 increase <- mutate(increase, FINAL = case_when(
   (O_Ch_type == 'forest loss') ~ "loss",
   (O_Ch_type == 'forest degradation') ~ "degradation",
-  (O_Ch_type == 'other') ~ 'other',
+  (O_Ch_type == 'other' & O_LC == 'forest') ~ 'other',
   (O_Ch_type == 'forest restoration') ~ 'restoration',
   (O_Change == 'no' & O_LC == 'non-forest') ~ 'stable non-forest',
   (O_Change == 'no' & O_LC == 'forest') ~ 'stable forest',
+  (O_LC == 'non-forest') ~ 'stable non-forest',
   TRUE ~ "FixMe"
 ))
 unique(increase$FINAL)
+head(increase[increase$FINAL == "other", ])
 increase[increase$FINAL=='FixMe', c('O_LC','O_Ch_type','O_Change')]
-
 
 colnames(dataTemp)
 dataTemp<-dataTemp[, c("plot_id", "lon", "lat", "flagged",'email',
@@ -540,6 +541,14 @@ CEOfull$Post2015[CEOfull$O_yrChange>2014 ]<-1
 ################## merge rechecked data and CEO data ######################
 #######################################################
 #######################################################
+
+#recheckOLD <- read.csv('Raw\\Compiled_06222021.csv')
+#recheck <- read.csv('Raw\\ceo-recheck-2021-07-13_noutf8v2-Interpreted.csv')
+
+recheck$Project<- 'QAQCincrDensity'
+recheck$pl_final<- NA
+recheck<-recheck[,c(21,5, 6, 12, 13, 22,
+                    14, 15, 16, 17, 18, 19, 20, 3, 4)]
 head(recheck)
 colnames(recheck)[1]<-"Project"
 colnames(recheck)[7]<-"LandCover_2019"
@@ -548,7 +557,7 @@ colnames(recheck)[9]<-"Change_type"
 colnames(recheck)[10]<-"Driver_of_degradation"
 colnames(recheck)[11]<-"Deforestation_type"
 colnames(recheck)[13]<-"Change_Yr"
-recheck$recheckFinal <- 1
+recheck$recheckFinal <- 'update'
 head(recheck)
 
 recheck <- mutate(recheck, recheckFinal = case_when(
@@ -558,6 +567,7 @@ recheck <- mutate(recheck, recheckFinal = case_when(
   (LandCover_2019 != 'non-forest' & Change == 'no')  ~ 'stable forest',
   TRUE ~ 'FixMe'
 ))
+
 unique(recheck$recheckFinal)
 recheck[recheck$recheckFinal == 'FixMe',]
 recheck$flagged[recheck$recheckFinal == 'FixMe']<-'yes'
@@ -569,18 +579,36 @@ recheck$Change_Yr[(recheck$recheckFinal != 'degradation')]<- NA
 colnames(CEOfull)
 colnames(recheck)
 
+colnames(recheck)[5]<-"pl_plot_id"
+colnames(recheck)
+sort(recheck$pl_plot_id)
+sort(CEOfull$plot_id)
+
+
 revisedData<- merge(CEOfull, recheck[,c(
-  "pl_plot_id", "Project", "LandCover_2019", "Change",       
+  "pl_plot_id", "lon", "lat", "Project", "LandCover_2019", "Change",       
   "Change_type", "Driver_of_degradation","Deforestation_type",           
   "Change_Yr", 'recheckFinal', 'recheck')], by.x = 'plot_id', by.y = 'pl_plot_id', no.dups = TRUE, all.x = T)
 head(revisedData)
 
+revisedData$lon.x[!is.na(revisedData$recheck)]==revisedData$lon.y[!is.na(revisedData$recheck)]
+revisedData$lat.x[!is.na(revisedData$recheck)]==revisedData$lat.y[!is.na(revisedData$recheck)]
+revisedData$Agreement[!is.na(revisedData$recheck)]<-revisedData$FINAL[!is.na(revisedData$recheck)] == revisedData$recheckFinal[!is.na(revisedData$recheck)]
+
+revisedData$FinalPrevious[!is.na(revisedData$recheck)] <- revisedData$FINAL[!is.na(revisedData$recheck)]
 revisedData$Source[!is.na(revisedData$recheck)] <- revisedData$Project[!is.na(revisedData$recheck)]
 revisedData$O_yrChange[!is.na(revisedData$recheck)] <- revisedData$Change_Yr[!is.na(revisedData$recheck)]
 revisedData$FINAL[!is.na(revisedData$recheck)] <- revisedData$recheckFinal[!is.na(revisedData$recheck)]
 
-revisedData<-revisedData[,colnames(CEOfull)]
+colnames(CEOfull)
+colnames(revisedData)
+revisedData<-revisedData[,c("plot_id", "lon.x", "lat.x", "flagged", 'Agreement', "FinalPrevious", "email", "O_LC", "O_Change",
+                             "O_Ch_type", "O_deg_driver", "O_def_type", "O_yrChange", "Confidence", "FINAL", "Source",
+                              "Post2015")]
 head(revisedData)
+colnames(revisedData)[2]<-"lon"
+colnames(revisedData)[3]<-"lat"
+
 #######################################################
 #######################################################
 ################## merge GIS and CEO data ######################
@@ -613,7 +641,7 @@ rm(GIS)
 
 colnames(fulldata)
 head(fulldata)
-write.csv(fulldata, file = 'ProcessedMergedData06222021.csv', row.names = F)
+write.csv(fulldata, file = 'ProcessedMergedData07152021.csv', row.names = F)
 
 ###########################################################
 ###########################################################
