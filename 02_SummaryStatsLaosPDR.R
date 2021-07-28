@@ -3,7 +3,7 @@ library(tidyverse)
 library(tidyr)
 library(survey)
 
-setwd('C:\\Users\\karis\\Documents\\SilvaCarbon\\laos_degradation\\Maps\\Comparison_2021\\LaosDegradation\\CEOdata')
+setwd('C:\\Users\\karis\\Documents\\Laos\\LaosDegradation\\CEOdata')
 
 #######################################################
 #######################################################
@@ -34,6 +34,8 @@ SavData[,c("FINAL", 'codedLab')]
 table(SavData$codedLab, SavData$FINAL)
 write.csv(table(SavData$codedLab, SavData$FINAL), file = 'Results\\intermedResults06232021.csv')
 
+colnames(SavData)
+table(SavData$fcdm, SavData$FINAL)
 colnames(SavData)
 ###########################################################
 ####### area estimates #############################################
