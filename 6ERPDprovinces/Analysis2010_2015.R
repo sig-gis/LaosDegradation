@@ -11,7 +11,8 @@ library(dplyr)
 setwd('C:\\Users\\karis\\Documents\\Laos\\LaosDegradation\\6ERPDprovinces')
 
 #sample map intersection
-dataMap <- read.csv('collection\\laos_samples_updated_20210909.csv')
+## dataMap <- read.csv('collection\\laos_samples_updated_20210909.csv')
+dataMap <- read.csv('collection\\laos_samples_buffer_20210922.csv')
 head(dataMap)
 
 # CEO data
@@ -31,7 +32,9 @@ head(dataMrgd_10)
 ##############################
 ## 2010 - 2015
 ##############################
-mapAreas10 <- read.csv('collection\\lao-expanded-area-counts10-15.csv')
+# mapAreas10 <- read.csv('collection\\lao-expanded-area-counts10-15.csv')
+mapAreas10 <- read.csv('collection\\lao-expanded-area-counts-w-buffer.csv')
+
 head(mapAreas10)
 
 colnames(dataMrgd_10)
@@ -149,6 +152,33 @@ dataMrgd_10$FREL1015_label[dataMrgd_10$frel_change1015 == 45] <- '3_deforestatio
 dataMrgd_10$FREL1015_label[dataMrgd_10$frel_change1015 == 42] <- '4_reforestation (42)'
 dataMrgd_10$FREL1015_label[dataMrgd_10$frel_change1015 == 54] <- '4_reforestation (54)'
 dataMrgd_10$FREL1015_label[dataMrgd_10$frel_change1015 == 55] <- '5_not_forest (55)'
+
+## FCP for Merged Maps
+colnames(dataMrgd_10)
+dataMrgd_10$ccdcsma1015fcp <- 0
+dataMrgd_10$ccdcsma1015fcp[dataMrgd_10$ccdc_2010_2015 == 0] <- 
+  mapAreas10$count[(mapAreas10$map_name == 'a_ccdc_class_2010_2015_v11' & mapAreas10$map_value == 0)]
+dataMrgd_10$ccdcsma1015fcp[dataMrgd_10$ccdc_2010_2015 == 1] <- 
+  mapAreas10$count[(mapAreas10$map_name == 'a_ccdc_class_2010_2015_v11' & mapAreas10$map_value == 1)]
+dataMrgd_10$ccdcsma1015fcp[dataMrgd_10$ccdc_2010_2015 == 2] <- 
+  mapAreas10$count[(mapAreas10$map_name == 'a_ccdc_class_2010_2015_v11' & mapAreas10$map_value == 2)]
+dataMrgd_10$ccdcsma1015fcp[dataMrgd_10$ccdc_2010_2015 == 3] <- 
+  mapAreas10$count[(mapAreas10$map_name == 'a_ccdc_class_2010_2015_v11' & mapAreas10$map_value == 3)]
+dataMrgd_10$ccdcsma1015fcp[dataMrgd_10$ccdc_2010_2015 == 4] <- 
+  mapAreas10$count[(mapAreas10$map_name == 'a_ccdc_class_2010_2015_v11' & mapAreas10$map_value == 4)]
+dataMrgd_10$ccdcsma1015fcp[dataMrgd_10$ccdc_2010_2015 == 5] <- 
+  mapAreas10$count[(mapAreas10$map_name == 'a_ccdc_class_2010_2015_v11' & mapAreas10$map_value == 5)]
+dataMrgd_10$ccdcsma1015fcp
+
+colnames(dataMrgd_10)
+dataMrgd_10$ccdc1015_label <- 0
+dataMrgd_10$ccdc1015_label[dataMrgd_10$ccdc_2010_2015 == 0] <- '0_no_data'
+dataMrgd_10$ccdc1015_label[dataMrgd_10$ccdc_2010_2015 == 1] <- '1_stable_forest'
+dataMrgd_10$ccdc1015_label[dataMrgd_10$ccdc_2010_2015 == 2] <- '2_degradation'
+dataMrgd_10$ccdc1015_label[dataMrgd_10$ccdc_2010_2015 == 3] <- '3_deforestation'
+dataMrgd_10$ccdc1015_label[dataMrgd_10$ccdc_2010_2015 == 4] <- '4_reforestation'
+dataMrgd_10$ccdc1015_label[dataMrgd_10$ccdc_2010_2015 == 5] <- '5_not_forest'
+dataMrgd_10$ccdc1015_label
 
 ##############################
 ## test assumptions
